@@ -9,6 +9,7 @@ public class transiciones : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(true);
         _transicionAnim = GetComponent<Animator>(); 
     }
     public void LoadScene(string scene)
