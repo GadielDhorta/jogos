@@ -35,7 +35,7 @@ public class opciones : MonoBehaviour
        // Debug.Log(1 / Time.deltaTime);
     }
 
-    void update()
+    void Update()
     { 
         Screen.brightness = brillo.value;
         Debug.Log(Screen.brightness);
