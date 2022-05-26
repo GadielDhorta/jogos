@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class gamemanager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public GameObject transicion;
-    public AudioSource kick;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
-        transicion.SetActive(true);
+    public GameObject transition;
 
+    private void Start()
+    {
+        transition.SetActive(true);
+        transition.GetComponent<Animator>().Play("entrada");
     }
-
-    public void OnMouseDown()
-    {
-       kick.Play(0);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+    public void LoadScene(string scene)
+    {   //hacer transicion de salida
+       
+        StartCoroutine(TransitionOut(scene));
         
+    }
+
+    IEnumerator TransitionOut(string scene)
+    {
+       // GameObject transicion = GameObject.Find("Transicion");
+        transition.SetActive(true);
+        transition.GetComponent<Animator>().Play("salida");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(scene);
+
+
     }
 }
