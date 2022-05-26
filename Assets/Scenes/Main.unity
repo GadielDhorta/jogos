@@ -942,7 +942,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Menu Principal
+  m_Text: Sample Titulo
 --- !u!222 &1945166072
 CanvasRenderer:
   m_ObjectHideFlags: 0
