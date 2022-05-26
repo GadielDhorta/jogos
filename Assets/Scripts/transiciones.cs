@@ -5,16 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class transiciones : MonoBehaviour
 {
+    //public AudioSource kick;
     private Animator _transicionAnim;
     // Start is called before the first frame update
+
     void Start()
     {
-        gameObject.SetActive(true);
         _transicionAnim = GetComponent<Animator>(); 
     }
+
+    public void OnMouseDown()
+    {
+      //  kick.Play(0);
+    }
+
     public void LoadScene(string scene)
     {
         StartCoroutine(Transiciona(scene));
+
     }
     IEnumerator Transiciona(string scene)
     {
@@ -22,4 +30,6 @@ public class transiciones : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(scene);
     }
+
+
 }
