@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8648e967ab2a7d84e801f9c7f454c71a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transition: {fileID: 0}
+  transition: {fileID: 8930640967336186614, guid: 466da66506e2af640b0b13da795d3750, type: 3}
+  audioMixer: {fileID: 24100000, guid: e5419c0d922eff34db1052786bd2b2c0, type: 2}
+  musicMixer: {fileID: 0}
+  brillo: {fileID: 0}
