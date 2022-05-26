@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class awaketransicion : MonoBehaviour
+public class gamemanager : MonoBehaviour
 {
     public GameObject transicion;
+    public AudioSource kick;
     // Start is called before the first frame update
-    private void Awake()
-    {
-        transicion.SetActive(true);
-    }
     void Start()
     {
- 
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        transicion.SetActive(true);
+
+    }
+
+    public void OnMouseDown()
+    {
+       kick.Play(0);
     }
 
     // Update is called once per frame

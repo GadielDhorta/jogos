@@ -1644,6 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d614b513f0b396b41a53ce176bde3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kick: {fileID: 2810873641227734721, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
 --- !u!95 &830122324
 Animator:
   serializedVersion: 4
@@ -3260,8 +3261,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1855363426}
-  - component: {fileID: 1855363425}
   - component: {fileID: 1855363424}
+  - component: {fileID: 1855363427}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3281,19 +3282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2cdfe923961e643aec5e602c21f7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1855363425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855363423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9f447fac5399c41b7e16399ca54e3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transicion: {fileID: 830122321}
 --- !u!4 &1855363426
 Transform:
   m_ObjectHideFlags: 0
@@ -3309,6 +3297,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1855363427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855363423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67fdc65bc202aba478e7a2038d94492f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transicion: {fileID: 830122321}
+  kick: {fileID: 2810873641227734721, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
 --- !u!1 &1889400769
 GameObject:
   m_ObjectHideFlags: 0

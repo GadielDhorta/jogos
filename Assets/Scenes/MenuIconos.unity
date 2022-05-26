@@ -285,6 +285,18 @@ MonoBehaviour:
           m_StringArgument: Acerca
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 1311009041}
+        m_TargetAssemblyTypeName: transiciones, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &281586399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -418,6 +430,18 @@ MonoBehaviour:
           m_StringArgument: SampleScene
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 1311009041}
+        m_TargetAssemblyTypeName: transiciones, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &447825100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,27 +489,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 613406675}
-  - component: {fileID: 613406674}
   - component: {fileID: 613406676}
   m_Layer: 0
-  m_Name: Config
+  m_Name: gamemanager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &613406674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 613406673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19c02e3f5faf7924caa91ee427c89bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &613406675
 Transform:
   m_ObjectHideFlags: 0
@@ -510,10 +521,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 613406673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9f447fac5399c41b7e16399ca54e3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 67fdc65bc202aba478e7a2038d94492f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transicion: {fileID: 1311009036}
+  kick: {fileID: 1001107399}
 --- !u!1 &738030439
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +621,18 @@ MonoBehaviour:
           m_StringArgument: Opciones
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 1311009041}
+        m_TargetAssemblyTypeName: transiciones, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &738030442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -741,7 +765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &917491087
 RectTransform:
   m_ObjectHideFlags: 0
@@ -818,6 +842,18 @@ MonoBehaviour:
           m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1311009041}
+        m_TargetAssemblyTypeName: transiciones, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &917491089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -856,6 +892,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917491086}
   m_CullTransparentMesh: 1
+--- !u!82 &1001107399 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2810873641227734721, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+  m_PrefabInstance: {fileID: 1456947299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079919590
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1195,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d614b513f0b396b41a53ce176bde3db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1456947299
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 320
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734720, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2810873641227734722, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
+      propertyPath: m_Name
+      value: AudioInterfaz
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a31f1d08aced00449c89f1bc19716d8, type: 3}
 --- !u!1 &1765808132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1347,18 @@ MonoBehaviour:
           m_StringArgument: Salir
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 1311009041}
+        m_TargetAssemblyTypeName: transiciones, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1765808135
 MonoBehaviour:
   m_ObjectHideFlags: 0
