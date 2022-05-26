@@ -15,31 +15,31 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
-        transition.SetActive(true);                                                 //Activa la capa "Transicion"
+        // musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
+
+        transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("entrada");                        //Activa la animacion de entrada a la escena
     }
     public void LoadScene(string scene)     //Resuleve en una corutina a que escena realizar el cambio y su animacion
-    {   
+    {
         StartCoroutine(TransitionOut(scene));
-        
     }
 
     IEnumerator TransitionOut(string scene)
     {
-        transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("salida");     //Ejecuta la animacion "salida" de "Transicion"
         yield return new WaitForSeconds(1);                     //Espera 1 segundo para poder ejecutar la animacion completa
         SceneManager.LoadScene(scene);                          //Carga escena "string"
     }
     public void RestartToMenu()                 //Cambia a escena Menu
     {
-        SceneManager.LoadScene("Menu");
+        LoadScene("Main");
     }
     public void RestartToGame()                 //Cambia a escena SampleScene
     {
-        SceneManager.LoadScene("SampleScene");
+        LoadScene("Juego");
     }
+
     public void Exit()                                 //Salir de la aplicacion
     {
         Application.Quit();
