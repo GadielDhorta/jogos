@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CardGameManager : MonoBehaviour
 {
-    public event Action<CardController> CartaLevantada = delegate { };
-
     private CardController[] Cartas = new CardController[2];
     private int numClicks = 0;
 
@@ -21,18 +19,21 @@ public class CardGameManager : MonoBehaviour
 
         Debug.Log(Carta.name);
 
-        if (Cartas[numClicks-1] == null)
+        if (Cartas[numClicks - 1] == null)
         {
             Cartas[numClicks - 1] = Carta;
         }
 
-        if(numClicks == 2)
+        if (numClicks == 2)
         {
             numClicks = 0;
 
-            if(Cartas[0].getImagenAtras().name == Cartas[1].getImagenAtras().name)
+            if (Cartas[0].getImagenAtras().name == Cartas[1].getImagenAtras().name)
             {
                 Debug.Log("Eureka");
+
+                Cartas[0].destruirse();
+                Cartas[1].destruirse();
             }
         }
     }
