@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
+        musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
 
         transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("entrada");                        //Activa la animacion de entrada a la escena
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     }
     public void Brillo()                               //Cambia el brillo de la pantalla 
     {
+       
         Screen.brightness = brillo.value;
         Debug.Log(Screen.brightness);
     }

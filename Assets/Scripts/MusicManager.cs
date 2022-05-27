@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
-
+    public AudioSource musicMixer;
     private static MusicManager instance;
+    
 
     public static MusicManager GetInstance()
     {
@@ -23,5 +26,12 @@ public class MusicManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    public void SetVolumemusica(float volume)   //Cambia el volumen de la Musica 
+    {
+
+        musicMixer = gameObject.GetComponent<AudioSource>();
+        Debug.Log("volumen de la musica" + volume);
     }
 }
