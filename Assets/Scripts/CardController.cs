@@ -5,23 +5,25 @@ using UnityEngine;
 public class CardController : MonoBehaviour
 {
     // Start is called before the first frame update
+    private GameObject PanelAtras;
     Sprite imagenAtras;
     CardGameManager MiCardGameManager;
 
     public Sprite getImagenAtras()
     {
-        return imagenAtras;
+        return PanelAtras.GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public void SetearImagenAdelante(Sprite sprite)
+    {
+        PanelAtras.GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
     private void Start()
     {
-        imagenAtras = obtenerImagenAtras();
+        PanelAtras = gameObject.transform.GetChild(1).gameObject;
         MiCardGameManager = GameObject.Find("Cartas").GetComponent<CardGameManager>();
 
-    }
-    private Sprite obtenerImagenAtras()
-    {
-        return gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void OnMouseDown()
@@ -39,6 +41,11 @@ public class CardController : MonoBehaviour
     public void destruirse()
     {
         Destroy(gameObject);
+    }
+
+    public void SetearImagen()
+    {
+
     }
 
 }

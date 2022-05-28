@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (4)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -442,7 +442,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (2)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -607,7 +607,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (6)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -735,7 +735,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (8)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -797,7 +797,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (9)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -976,7 +976,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (7)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -1038,7 +1038,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (11)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -1194,7 +1194,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (10)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -1256,7 +1256,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (1)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -1427,7 +1427,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (3)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
@@ -1500,7 +1500,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
-      value: Carta (5)
+      value: Carta
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
