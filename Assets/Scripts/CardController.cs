@@ -27,8 +27,7 @@ public class CardController : MonoBehaviour
     private void OnMouseDown()
     {
         rotar();
-        Debug.Log("MiCardGameManager.name");
-        Debug.Log(MiCardGameManager);
+
         MiCardGameManager.CartaClickeada(this);
     }
 
@@ -41,4 +40,5 @@ public class CardController : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 }

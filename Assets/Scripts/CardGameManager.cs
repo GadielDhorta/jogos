@@ -14,22 +14,14 @@ public class CardGameManager : MonoBehaviour
     }
     public void CartaClickeada(CardController Carta)
     {
-        if (Cartas[0] != null && Cartas[1] != null)
-        {
+        Debug.Log("carta clickeada");
+        Debug.Log(Cartas[0]);
+        Debug.Log(Cartas[1]);
 
-            if (Cartas[0].gameObject.transform.position == Cartas[1].gameObject.transform.position)
-            {
-                return;
-            }
-        }
 
         numClicks += 1;
 
-
-        if (Cartas[numClicks - 1] == null)
-        {
-            Cartas[numClicks - 1] = Carta;
-        }
+        Cartas[numClicks - 1] = Carta;
 
         if (numClicks == 2)
         {
@@ -37,9 +29,13 @@ public class CardGameManager : MonoBehaviour
 
             if (Cartas[0].getImagenAtras().name == Cartas[1].getImagenAtras().name)
             {
-
                 Cartas[0].destruirse();
                 Cartas[1].destruirse();
+            }
+            else
+            {
+                Cartas[0].rotar();
+                Cartas[1].rotar();
             }
         }
     }
