@@ -241,6 +241,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14014a328b48293458ba531f2be85ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprites:
+  - {fileID: 21300000, guid: ffa7201aa062f0d43b32a3688af5e4fe, type: 3}
+  - {fileID: 21300000, guid: af145632bebed2e44a1d3f478b806dd8, type: 3}
 --- !u!1 &142991829
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,9 +736,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 54064375}
     m_Modifications:
+    - target: {fileID: 2484774782276159806, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f7947a8ff45649e4189bbb7bd09f10d2, type: 3}
     - target: {fileID: 2622525897692201724, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_Name
       value: Carta
+      objectReference: {fileID: 0}
+    - target: {fileID: 2646624553313249858, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2646624553313249858, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.001
       objectReference: {fileID: 0}
     - target: {fileID: 3422848153251733729, guid: e11a2b695ae80dd40b01ab33bcaf6473, type: 3}
       propertyPath: m_RootOrder
