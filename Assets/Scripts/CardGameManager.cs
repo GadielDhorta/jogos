@@ -14,10 +14,17 @@ public class CardGameManager : MonoBehaviour
     }
     public void CartaClickeada(CardController Carta)
     {
+        if (Cartas[0] != null && Cartas[1] != null)
+        {
+
+            if (Cartas[0].gameObject.transform.position == Cartas[1].gameObject.transform.position)
+            {
+                return;
+            }
+        }
+
         numClicks += 1;
 
-
-        Debug.Log(Carta.name);
 
         if (Cartas[numClicks - 1] == null)
         {
@@ -30,7 +37,6 @@ public class CardGameManager : MonoBehaviour
 
             if (Cartas[0].getImagenAtras().name == Cartas[1].getImagenAtras().name)
             {
-                Debug.Log("Eureka");
 
                 Cartas[0].destruirse();
                 Cartas[1].destruirse();
