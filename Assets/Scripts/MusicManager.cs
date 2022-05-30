@@ -46,8 +46,13 @@ public class MusicManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            mouse.PlayOneShot(click, 1.0f);
+            Reproducirclicks();
         }
-         
+
+    }
+
+    public void Reproducirclicks()
+    {
+        mouse.PlayOneShot(click, 1.0f);
     }
 }
