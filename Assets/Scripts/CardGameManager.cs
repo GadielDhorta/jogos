@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardGameManager : MonoBehaviour
@@ -8,6 +9,17 @@ public class CardGameManager : MonoBehaviour
     public Sprite[] Sprites;
     private CardController[] TodasLasCartas;
     private int numClicks = 0;
+
+
+    void OnEnable()
+    {
+        EventManager.CartaRotada += CartaClickeada;
+    }
+
+    void OnDisable()
+    {
+        EventManager.CartaRotada -= CartaClickeada;
+    }
 
     void Start()
     {
@@ -22,22 +34,18 @@ public class CardGameManager : MonoBehaviour
             TodasLasCartas[i] = transform.GetChild(i).gameObject.GetComponent<CardController>();
         }
 
-        //asignando imagen por par random
+        // randomizando
+        System.Random rnd = new System.Random();
+        CardController[] TodasLasCartasRandom = TodasLasCartas.OrderBy(x => rnd.Next()).ToArray();
+
+        //asignando imagen por par
+        int lastIndex = TodasLasCartas.Length - 1;
         for (int i = 0; i < TodasLasCartas.Length / 2; i++)
         {
             int indiceImagen = Random.Range(0, Sprites.Length);
-            int indiceCarta1 = i;
-            int indiceCarta2 = Random.Range(TodasLasCartas.Length / 2, TodasLasCartas.Length);
-            while (TodasLasCartas[indiceCarta2] == null)
-            {
-                indiceCarta2 = Random.Range(TodasLasCartas.Length / 2, TodasLasCartas.Length);
-            }
 
-            TodasLasCartas[indiceCarta1].SetearImagenAdelante(Sprites[indiceImagen]);
-            TodasLasCartas[indiceCarta2].SetearImagenAdelante(Sprites[indiceImagen]);
-            TodasLasCartas[indiceCarta1] = null;
-            TodasLasCartas[indiceCarta2] = null;
-
+            TodasLasCartasRandom[i].SetearImagenAdelante(Sprites[indiceImagen]);
+            TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
         }
 
     }
@@ -52,6 +60,7 @@ public class CardGameManager : MonoBehaviour
         {
             numClicks = 0;
 
+
             if (ParDeCartas[0].transform.position.Equals(ParDeCartas[1].transform.position))
             {
                 ParDeCartas[0] = null;
@@ -59,15 +68,17 @@ public class CardGameManager : MonoBehaviour
                 return;
             }
 
-            if (ParDeCartas[0].getImagenAtras().name == ParDeCartas[1].getImagenAtras().name)
+            EventManager.OnParSeleccionado();
+
+            if (ParDeCartas[0].getImagenAdelante().name == ParDeCartas[1].getImagenAdelante().name)
             {
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();
             }
             else
             {
-                ParDeCartas[0].rotar();
-                ParDeCartas[1].rotar();
+                ParDeCartas[0].RotarSinNotificar();
+                ParDeCartas[1].RotarSinNotificar();
             }
         }
     }
