@@ -16,7 +16,17 @@ public class MusicManager : MonoBehaviour
     {
         return instance;
     }
-    // Start is called before the first frame update
+
+    void OnEnable()
+    {
+        EventManager.ButtonClickeado += Reproducirclicks;
+    }
+
+    void OnDisable()
+    {
+        EventManager.ButtonClickeado -= Reproducirclicks;
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -40,15 +50,6 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         mouse = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Reproducirclicks();
-        }
-
     }
 
     public void Reproducirclicks()

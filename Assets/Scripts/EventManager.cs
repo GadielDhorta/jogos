@@ -16,6 +16,9 @@ public class EventManager : MonoBehaviour
     public static event Action ParDesSeleccionado = delegate { };
     public static event Action GanamosElJuego = delegate { };
 
+    // eventos de interfaz
+    public static event Action ButtonClickeado = delegate { };
+
 
     public static void OnCartaDestruida()
     {
@@ -48,6 +51,12 @@ public class EventManager : MonoBehaviour
     {
         Debug.Log("Ganamos el juego!");
         GanamosElJuego();
+    }
+
+    public static void OnButtonClickeado()
+    {
+        Debug.Log("ButtonClickeado");
+        ButtonClickeado();
     }
 
 }

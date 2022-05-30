@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402358, g: 0.49316692, b: 0.5722353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -245,10 +245,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
@@ -256,7 +260,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1565293081}
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1565293081}
+    - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
@@ -264,11 +276,23 @@ PrefabInstance:
       value: RestartToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: NotifyButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986778078849804520, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8986778078849804526, guid: e00dd58c7555779478d619f5ee7fbc42, type: 3}
@@ -906,6 +930,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Acerca
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1565293081}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: NotifyButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &476706133
