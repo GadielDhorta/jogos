@@ -8,7 +8,9 @@ public class MusicManager : MonoBehaviour
 {
     public AudioSource musicMixer;
     private static MusicManager instance;
-    
+    public AudioClip click;
+    private AudioSource mouse;
+
 
     public static MusicManager GetInstance()
     {
@@ -33,5 +35,19 @@ public class MusicManager : MonoBehaviour
 
         musicMixer = gameObject.GetComponent<AudioSource>();
         Debug.Log("volumen de la musica" + volume);
+    }
+
+    private void Start()
+    {
+        mouse = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            mouse.PlayOneShot(click, 1.0f);
+        }
+         
     }
 }

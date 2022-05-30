@@ -61,8 +61,11 @@ public class GameManager : MonoBehaviour
     }
     public void Brillo()                               //Cambia el brillo de la pantalla 
     {
-       
+
         Screen.brightness = brillo.value;
         Debug.Log(Screen.brightness);
     }
+
+
+
 }

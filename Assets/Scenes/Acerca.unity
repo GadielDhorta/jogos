@@ -389,6 +389,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6840902317621244405, guid: 8baae7bf643740c46aa8fc62cb29898d, type: 3}
+      propertyPath: click
+      value: 
+      objectReference: {fileID: 1551376809318767462, guid: af24a1506a6b4044f8b4bbee725171c6, type: 3}
+    - target: {fileID: 6840902317621244405, guid: 8baae7bf643740c46aa8fc62cb29898d, type: 3}
       propertyPath: transition
       value: 
       objectReference: {fileID: 714298558}
