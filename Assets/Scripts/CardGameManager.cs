@@ -80,6 +80,23 @@ public class CardGameManager : MonoBehaviour
                 ParDeCartas[0].RotarSinNotificar();
                 ParDeCartas[1].RotarSinNotificar();
             }
+
+            ComprobarSiGanamos();
+        }
+    }
+
+    public void ComprobarSiGanamos()
+    {
+        StartCoroutine(ComprobarSiGanamosElJuego());
+    }
+
+    private IEnumerator ComprobarSiGanamosElJuego()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        if (transform.childCount == 0)
+        {
+            EventManager.OnGanamosElJuego();
         }
     }
 }

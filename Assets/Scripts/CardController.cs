@@ -99,6 +99,7 @@ public class CardController : MonoBehaviour
     {
         yield return new WaitForSeconds(TiempoDeMuestraDeCartas);
         Destroy(gameObject);
+        EventManager.OnCartaDestruida();
     }
 
 

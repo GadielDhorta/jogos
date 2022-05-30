@@ -13,10 +13,29 @@ public class GameManager : MonoBehaviour
     public AudioSource musicMixer;  //Se indica el mixer "Musica"
     public Slider brillo;           //Se indica el slider "Brillo"
 
+    void OnEnable()
+    {
+        EventManager.GanamosElJuego += MostrarFinJuego;
+    }
+
+    void OnDisable()
+    {
+        EventManager.GanamosElJuego -= MostrarFinJuego;
+    }
+
+    private void MostrarFinJuego()
+    {
+        Debug.Log("Fin del juego");
+    }
+
     private void Start()
     {
         musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
 
+        if (transition == null)
+        {
+            transition = GameObject.Find("Canvas").transform.Find("Transicion").gameObject;
+        }
         transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("entrada");                        //Activa la animacion de entrada a la escena
     }
@@ -29,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         transition.GetComponent<Animator>().Play("salida");     //Ejecuta la animacion "salida" de "Transicion"
         yield return new WaitForSeconds(1);                     //Espera 1 segundo para poder ejecutar la animacion completa
-        SceneManager.LoadScene(scene);                          //Carga escena "string"
+        SceneManager.LoadScene(scene);                         //Carga escena "string"
     }
     public void RestartToMenu()                 //Cambia a escena Menu
     {
@@ -61,10 +80,10 @@ public class GameManager : MonoBehaviour
     }
     public void Brillo()                               //Cambia el brillo de la pantalla 
     {
-
         Screen.brightness = brillo.value;
         Debug.Log(Screen.brightness);
     }
+
 
 
 

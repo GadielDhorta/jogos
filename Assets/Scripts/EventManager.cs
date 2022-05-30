@@ -6,14 +6,22 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
 
-    public static event Action<CardController> CartaRotada;
+    public static event Action<CardController> CartaRotada = delegate { };
+
+    public static event Action CartaDestruida = delegate { };
 
     public static event Action GameStarted = delegate { };
 
     public static event Action ParSeleccionado = delegate { };
     public static event Action ParDesSeleccionado = delegate { };
+    public static event Action GanamosElJuego = delegate { };
 
 
+    public static void OnCartaDestruida()
+    {
+        Debug.Log("CartaDestruida");
+        CartaDestruida();
+    }
     public static void OnCartaRotada(CardController carta)
     {
         Debug.Log("CartaRotada");
@@ -36,5 +44,10 @@ public class EventManager : MonoBehaviour
         ParDesSeleccionado();
     }
 
+    public static void OnGanamosElJuego()
+    {
+        Debug.Log("Ganamos el juego!");
+        GanamosElJuego();
+    }
 
 }
