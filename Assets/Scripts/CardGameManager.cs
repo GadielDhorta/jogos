@@ -74,6 +74,7 @@ public class CardGameManager : MonoBehaviour
             {
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();
+
             }
             else
             {
@@ -92,11 +93,14 @@ public class CardGameManager : MonoBehaviour
 
     private IEnumerator ComprobarSiGanamosElJuego()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 2);
+
+        EventManager.OnParDesSeleccionado();
 
         if (transform.childCount == 0)
         {
             EventManager.OnGanamosElJuego();
         }
+
     }
 }

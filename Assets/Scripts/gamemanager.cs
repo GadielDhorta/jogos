@@ -6,6 +6,12 @@ using System;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+public static class Globales
+{
+    public static float TiempoDeMuestraDeCartas = 1f;
+
+}
+
 public class GameManager : MonoBehaviour
 {
     public GameObject transition;   //Se indica el prefab "Transicion"
@@ -39,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     private void MostrarFinJuego()
     {
-        Debug.Log("Fin del juego");
+        GameObject.Find("Canvas").transform.Find("Ganaste").gameObject.SetActive(true);
     }
 
     public void LoadScene(string scene)     //Resuleve en una corutina a que escena realizar el cambio y su animacion
@@ -52,6 +58,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartToGame()                 //Cambia a escena SampleScene
     {
+        EventManager.OnGameStarted();
         LoadScene("Juego");
     }
 

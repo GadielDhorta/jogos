@@ -6,28 +6,29 @@ public class CardController : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject PanelAdelante;
-    private float TiempoDeMuestraDeCartas = 1f;
+
+    private float TiempoDeRotacion = 0.5f;
     Sprite imagenAdelante;
 
 
     void OnEnable()
     {
         EventManager.ParSeleccionado += ConGelarClickTemporalmente;
+        EventManager.ParDesSeleccionado += HabilitarClick;
     }
 
     void OnDisable()
     {
         EventManager.ParSeleccionado -= ConGelarClickTemporalmente;
+        EventManager.ParDesSeleccionado -= HabilitarClick;
     }
     private void Start()
     {
         PanelAdelante = gameObject.transform.GetChild(1).gameObject;
-
     }
 
     private void OnMouseDown()
     {
-
         if (this.tag != "Deshabilitado")
         {
             rotar();
@@ -39,7 +40,13 @@ public class CardController : MonoBehaviour
         // congelamos click
         this.tag = "Deshabilitado";
         // habilitamosClick
-        Invoke("HabilitarClick", TiempoDeMuestraDeCartas);
+        Invoke("HabilitarClick", Globales.TiempoDeMuestraDeCartas);
+    }
+
+    void CongelarClickIndefinidamente()
+    {
+        // congelamos click
+        this.tag = "Deshabilitado";
     }
 
     void HabilitarClick()
@@ -63,8 +70,14 @@ public class CardController : MonoBehaviour
         return gameObject.transform.parent.gameObject;
     }
 
+    private Rotate ScriptDeRotacion()
+    {
+        return gameObject.GetComponent<Rotate>();
+    }
+
     public void rotar()
     {
+        CongelarClickIndefinidamente();
         EventManager.OnCartaRotada(this);
         StartCoroutine(RotarAntesDeTiempo());
     }
@@ -76,18 +89,15 @@ public class CardController : MonoBehaviour
 
     private IEnumerator RotarAntesDeTiempo()
     {
-        transform.Rotate(Vector3.up, 180);
-
-        yield return new WaitForSeconds(TiempoDeMuestraDeCartas);
+        ScriptDeRotacion().StartRotating(TiempoDeRotacion);
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
 
     }
 
     private IEnumerator RotarDespuesDeTiempo()
     {
-        yield return new WaitForSeconds(TiempoDeMuestraDeCartas);
-        transform.Rotate(Vector3.up, 180);
-
-
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        ScriptDeRotacion().StartRotatingBackwards(TiempoDeRotacion);
     }
 
     public void destruirse()
@@ -97,7 +107,7 @@ public class CardController : MonoBehaviour
 
     private IEnumerator DestruirDespuesDeTiempo()
     {
-        yield return new WaitForSeconds(TiempoDeMuestraDeCartas);
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         Destroy(gameObject);
         EventManager.OnCartaDestruida();
     }
