@@ -41,6 +41,16 @@ public class gamemanager : MonoBehaviour
         }
         transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("entrada");                        //Activa la animacion de entrada a la escena
+
+        IniciarJuego();
+    }
+
+    private void IniciarJuego()
+    {
+        if( SceneManager.GetActiveScene().name == "Juego")
+        {
+            EventManager.OnGameStarted();
+        }
     }
 
     private void MostrarFinJuego()

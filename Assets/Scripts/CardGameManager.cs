@@ -14,17 +14,15 @@ public class CardGameManager : MonoBehaviour
     void OnEnable()
     {
         EventManager.CartaRotada += CartaClickeada;
+        EventManager.GameStarted += InicializarCartas;
     }
 
     void OnDisable()
     {
         EventManager.CartaRotada -= CartaClickeada;
+        EventManager.GameStarted -= InicializarCartas;
     }
 
-    void Start()
-    {
-        InicializarCartas();
-    }
 
     void InicializarCartas()
     {
