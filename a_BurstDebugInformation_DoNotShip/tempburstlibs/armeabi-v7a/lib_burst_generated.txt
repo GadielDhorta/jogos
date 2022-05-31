@@ -131,9 +131,9 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Unity.2D.Animation.Runtime.dll
 --root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Unity.2D.IK.Runtime.dll
+--root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Unity.2D.SpriteShape.Runtime.dll
 --root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Unity.2D.Common.Runtime.dll
---root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll
 --assembly-folder=C:\Users\Gadiel\Documents\GDV\ProyectoJuegosGDV\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/

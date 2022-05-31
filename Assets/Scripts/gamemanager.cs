@@ -12,7 +12,7 @@ public static class Globales
 
 }
 
-public class GameManager : MonoBehaviour
+public class gamemanager : MonoBehaviour
 {
     public GameObject transition;   //Se indica el prefab "Transicion"
     public AudioMixer audioMixer;   //Se indica el mixer "Master"
