@@ -7,7 +7,7 @@ public class CardController : MonoBehaviour
     // Start is called before the first frame update
     private GameObject PanelAdelante;
 
-    private float TiempoDeRotacion = 0.5f;
+
     Sprite imagenAdelante;
 
 
@@ -16,13 +16,11 @@ public class CardController : MonoBehaviour
     void OnEnable()
     {
         EventManager.SeSeleccionaPar += ConGelarClickTemporalmente;
-        EventManager.SeDesSeleccionaPar += HabilitarClick;
     }
 
     void OnDisable()
     {
         EventManager.SeSeleccionaPar -= ConGelarClickTemporalmente;
-        EventManager.SeDesSeleccionaPar -= HabilitarClick;
     }
     private void Start()
     {
@@ -34,6 +32,7 @@ public class CardController : MonoBehaviour
     {
         if (this.tag != "Deshabilitado")
         {
+            CongelarClickIndefinidamente();
             Rotar();
         }
     }
@@ -80,10 +79,7 @@ public class CardController : MonoBehaviour
 
     public void Rotar()
     {
-        CongelarClickIndefinidamente();
-        EventManager.OnCartaDescubierta(this);
         StartCoroutine(RotarAntesDeTiempo());
-
     }
 
     public void Ocultar()
@@ -93,17 +89,20 @@ public class CardController : MonoBehaviour
 
     private IEnumerator RotarAntesDeTiempo()
     {
-        ScriptDeRotacion().StartRotating(TiempoDeRotacion);
-        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        ScriptDeRotacion().StartRotating(Globales.TiempoDeRotacion);
+        yield return new WaitForSeconds(Globales.TiempoDeRotacion);
+        EventManager.OnCartaDescubierta(this);
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas - Globales.TiempoDeRotacion);
 
     }
 
     private IEnumerator RotarDespuesDeTiempo()
     {
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        ScriptDeRotacion().StartRotatingBackwards(Globales.TiempoDeRotacion);
+        yield return new WaitForSeconds(Globales.TiempoDeRotacion);
         EventManager.OnCartaOcultada(this);
-        EventManager.OnParDesSeleccionado();
-        ScriptDeRotacion().StartRotatingBackwards(TiempoDeRotacion);
+        this.HabilitarClick();
     }
 
     public void destruirse()
@@ -116,7 +115,6 @@ public class CardController : MonoBehaviour
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         Destroy(gameObject);
         EventManager.OnCartaDestruida();
-        EventManager.OnParDesSeleccionado();
     }
 
 

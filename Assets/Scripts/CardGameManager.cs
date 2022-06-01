@@ -9,19 +9,21 @@ public class CardGameManager : MonoBehaviour
     public Sprite[] Sprites;
     private CardController[] TodasLasCartas;
     private int numClicks = 0;
-    private int puntajebase = 0;
+    private int conteoClicksTotal = 0;
 
 
     void OnEnable()
     {
         EventManager.SeDescubreCarta += CartaClickeada;
         EventManager.IniciaJuego += InicializarCartas;
+        EventManager.SeDesSeleccionaPar += ComprobarSiGanamos;
     }
 
     void OnDisable()
     {
         EventManager.SeDescubreCarta -= CartaClickeada;
         EventManager.IniciaJuego -= InicializarCartas;
+        EventManager.SeDesSeleccionaPar -= ComprobarSiGanamos;
     }
 
 
@@ -56,20 +58,17 @@ public class CardGameManager : MonoBehaviour
 
     }
 
+
     public void CartaClickeada(CardController Carta)
     {
         numClicks += 1;
-        puntajebase += 1;
-
-        Debug.Log("PuntajeBase");
-        Debug.Log(puntajebase);
+        conteoClicksTotal += 1;
 
         ParDeCartas[numClicks - 1] = Carta;
 
         if (numClicks == 2)
         {
             numClicks = 0;
-
 
             if (ParDeCartas[0].transform.position.Equals(ParDeCartas[1].transform.position))
             {
@@ -91,8 +90,6 @@ public class CardGameManager : MonoBehaviour
                 ParDeCartas[0].Ocultar();
                 ParDeCartas[1].Ocultar();
             }
-
-            ComprobarSiGanamos();
         }
     }
 
@@ -103,14 +100,55 @@ public class CardGameManager : MonoBehaviour
 
     private IEnumerator ComprobarSiGanamosElJuego()
     {
-        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 2);
+        // hay que esperar un tiempo porque hacer esto con eventos no sirve, unity tarda en destruir los objetos
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
 
         EventManager.OnParDesSeleccionado();
 
         if (transform.childCount == 0)
         {
-            EventManager.OnGanamosElJuego();
+            EventManager.OnGanamosElJuego(this.Puntaje());
         }
 
+    }
+
+    private int Puntaje()
+    {
+        int baseMuyBueno = 3;
+        int baseBueno = 4;
+        int baseMalo = 6;
+
+        int pares = TodasLasCartas.Length / 2;
+        int factor = pares - 1;
+
+        int resultado = 0;
+
+        Debug.Log("Clicks");
+        Debug.Log(conteoClicksTotal);
+
+        if (conteoClicksTotal == pares)
+        {
+            // perfecto
+            resultado = 4;
+        }
+        else if (conteoClicksTotal <= baseMuyBueno)
+        {
+            resultado = 3;
+        }
+        else if (conteoClicksTotal <= baseBueno)
+        {
+            resultado = 2;
+        }
+        else if (conteoClicksTotal <= baseMalo)
+        {
+            resultado = 1;
+        }
+        else
+        {
+            resultado = 0;
+        }
+
+
+        return resultado;
     }
 }

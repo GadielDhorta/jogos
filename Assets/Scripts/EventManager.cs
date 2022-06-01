@@ -15,7 +15,7 @@ public class EventManager : MonoBehaviour
 
     public static event Action SeSeleccionaPar = delegate { };
     public static event Action SeDesSeleccionaPar = delegate { };
-    public static event Action JuegoGanado = delegate { };
+    public static event Action<int> JuegoGanado = delegate { };
 
     // eventos de interfaz
     public static event Action SeClickeaBoton = delegate { };
@@ -55,10 +55,10 @@ public class EventManager : MonoBehaviour
         SeDesSeleccionaPar();
     }
 
-    public static void OnGanamosElJuego()
+    public static void OnGanamosElJuego(int Puntaje)
     {
         Debug.Log("Ganamos el juego!");
-        JuegoGanado();
+        JuegoGanado(Puntaje);
     }
 
     public static void OnButtonClickeado()

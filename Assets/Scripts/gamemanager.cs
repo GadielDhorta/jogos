@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public static class Globales
 {
     public static float TiempoDeMuestraDeCartas = 1f;
-
+    public static float TiempoDeRotacion = 0.5f;
 }
 
 public class gamemanager : MonoBehaviour
@@ -47,15 +47,18 @@ public class gamemanager : MonoBehaviour
 
     private void IniciarJuego()
     {
-        if( SceneManager.GetActiveScene().name == "Juego")
+        if (SceneManager.GetActiveScene().name == "Juego")
         {
             EventManager.OnGameStarted();
         }
     }
 
-    private void MostrarFinJuego()
+    private void MostrarFinJuego(int Puntaje)
     {
         GameObject.Find("Canvas").transform.Find("Ganaste").gameObject.SetActive(true);
+
+        Debug.Log("Puntaje(en estrellas):");
+        Debug.Log(Puntaje);
     }
 
     public void LoadScene(string scene)     //Resuleve en una corutina a que escena realizar el cambio y su animacion
