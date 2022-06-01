@@ -1,17 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
-
+    public AudioSource musicMixer;
     private static MusicManager instance;
+    public AudioClip click;
+    private AudioSource mouse;
+    public AudioClip flip;
+    private AudioSource flipado;
+
 
     public static MusicManager GetInstance()
     {
         return instance;
     }
-    // Start is called before the first frame update
+
+    void OnEnable()
+    {
+        EventManager.SeClickeaBoton += Reproducirclicks;
+        EventManager.SeDescubreCarta += sonidocarta;
+        EventManager.SeOcultaCarta += sonidocarta;
+    }
+
+    void OnDisable()
+    {
+        EventManager.SeClickeaBoton -= Reproducirclicks;
+        EventManager.SeDescubreCarta -= sonidocarta;
+        EventManager.SeOcultaCarta -= sonidocarta;
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -23,5 +44,27 @@ public class MusicManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    public void SetVolumemusica(float volume)   //Cambia el volumen de la Musica 
+    {
+
+        musicMixer = gameObject.GetComponent<AudioSource>();
+        Debug.Log("volumen de la musica" + volume);
+    }
+
+    private void Start()
+    {
+        mouse = GetComponent<AudioSource>();
+        flipado = GetComponent<AudioSource>();
+    }
+
+    public void Reproducirclicks()
+    {
+        mouse.PlayOneShot(click, 1.0f);
+    }
+    public void sonidocarta(CardController carta)
+    {
+        flipado.PlayOneShot(flip, 1.0f);
     }
 }

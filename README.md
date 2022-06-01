@@ -1,1 +1,4 @@
 # ProyectoJuegosGDV
+
+gameobjet carta: 
+imagen 
