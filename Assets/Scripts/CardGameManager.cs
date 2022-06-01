@@ -16,14 +16,12 @@ public class CardGameManager : MonoBehaviour
     {
         EventManager.SeDescubreCarta += CartaClickeada;
         EventManager.IniciaJuego += InicializarCartas;
-        EventManager.SeDesSeleccionaPar += ComprobarSiGanamos;
     }
 
     void OnDisable()
     {
         EventManager.SeDescubreCarta -= CartaClickeada;
         EventManager.IniciaJuego -= InicializarCartas;
-        EventManager.SeDesSeleccionaPar -= ComprobarSiGanamos;
     }
 
 
@@ -64,6 +62,8 @@ public class CardGameManager : MonoBehaviour
         numClicks += 1;
         conteoClicksTotal += 1;
 
+        Puntaje();
+
         ParDeCartas[numClicks - 1] = Carta;
 
         if (numClicks == 2)
@@ -84,13 +84,26 @@ public class CardGameManager : MonoBehaviour
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();
 
+                ComprobarSiGanamos();
             }
             else
             {
                 ParDeCartas[0].Ocultar();
                 ParDeCartas[1].Ocultar();
             }
+
+            NotificarParDesSeleccionado();
         }
+    }
+
+    public void NotificarParDesSeleccionado()
+    {   //hay que esperar a que el par deje de mostrarse, pero solo queremos notificar del evento una sola vez, por esto no se hace dentro de cardcontroller
+        StartCoroutine(NotificarQueSeDesSeleccionoPar());
+    }
+    private IEnumerator NotificarQueSeDesSeleccionoPar()
+    {
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        EventManager.OnParDesSeleccionado();
     }
 
     public void ComprobarSiGanamos()
@@ -101,9 +114,7 @@ public class CardGameManager : MonoBehaviour
     private IEnumerator ComprobarSiGanamosElJuego()
     {
         // hay que esperar un tiempo porque hacer esto con eventos no sirve, unity tarda en destruir los objetos
-        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
-
-        EventManager.OnParDesSeleccionado();
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 1.5f);
 
         if (transform.childCount == 0)
         {
@@ -121,25 +132,28 @@ public class CardGameManager : MonoBehaviour
         int pares = TodasLasCartas.Length / 2;
         int factor = pares - 1;
 
+        int MuyBuenoAjustado = baseMuyBueno * factor;
+        int BuenoAjustado = baseBueno * factor;
+        int MaloAjustado = baseMalo * factor;
+
         int resultado = 0;
 
-        Debug.Log("Clicks");
-        Debug.Log(conteoClicksTotal);
 
-        if (conteoClicksTotal == pares)
+
+        if (conteoClicksTotal == pares * 2)
         {
             // perfecto
             resultado = 4;
         }
-        else if (conteoClicksTotal <= baseMuyBueno)
+        else if (conteoClicksTotal <= MuyBuenoAjustado)
         {
             resultado = 3;
         }
-        else if (conteoClicksTotal <= baseBueno)
+        else if (conteoClicksTotal <= BuenoAjustado)
         {
             resultado = 2;
         }
-        else if (conteoClicksTotal <= baseMalo)
+        else if (conteoClicksTotal <= MaloAjustado)
         {
             resultado = 1;
         }
@@ -147,7 +161,6 @@ public class CardGameManager : MonoBehaviour
         {
             resultado = 0;
         }
-
 
         return resultado;
     }
