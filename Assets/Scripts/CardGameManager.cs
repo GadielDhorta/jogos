@@ -33,6 +33,12 @@ public class CardGameManager : MonoBehaviour
             TodasLasCartas[i] = transform.GetChild(i).gameObject.GetComponent<CardController>();
         }
 
+        if (Sprites.Length < TodasLasCartas.Length / 2)
+        {
+            Debug.Log("Error, no nos alcanzan los sprites");
+        }
+
+
         // randomizando
         System.Random rnd = new System.Random();
         CardController[] TodasLasCartasRandom = TodasLasCartas.OrderBy(x => rnd.Next()).ToArray();
@@ -41,7 +47,8 @@ public class CardGameManager : MonoBehaviour
         int lastIndex = TodasLasCartas.Length - 1;
         for (int i = 0; i < TodasLasCartas.Length / 2; i++)
         {
-            int indiceImagen = Random.Range(0, Sprites.Length);
+            // los pares no se repiten, por lo que la cantidad de pares es cantidad de cartas /2
+            int indiceImagen = i;
 
             TodasLasCartasRandom[i].SetearImagenAdelante(Sprites[indiceImagen]);
             TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
