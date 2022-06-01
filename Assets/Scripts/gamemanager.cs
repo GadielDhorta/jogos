@@ -23,12 +23,12 @@ public class gamemanager : MonoBehaviour
     // eventos
     void OnEnable()
     {
-        EventManager.GanamosElJuego += MostrarFinJuego;
+        EventManager.JuegoGanado += MostrarFinJuego;
     }
 
     void OnDisable()
     {
-        EventManager.GanamosElJuego -= MostrarFinJuego;
+        EventManager.JuegoGanado -= MostrarFinJuego;
     }
 
     private void Start()

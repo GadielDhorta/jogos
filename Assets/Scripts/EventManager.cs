@@ -6,57 +6,65 @@ using UnityEngine;
 public class EventManager : MonoBehaviour
 {
 
-    public static event Action<CardController> CartaRotada = delegate { };
+    public static event Action<CardController> SeDescubreCarta = delegate { };
+    public static event Action<CardController> SeOcultaCarta = delegate { };
 
-    public static event Action CartaDestruida = delegate { };
+    public static event Action SeDestruyeCarta = delegate { };
 
-    public static event Action GameStarted = delegate { };
+    public static event Action IniciaJuego = delegate { };
 
-    public static event Action ParSeleccionado = delegate { };
-    public static event Action ParDesSeleccionado = delegate { };
-    public static event Action GanamosElJuego = delegate { };
+    public static event Action SeSeleccionaPar = delegate { };
+    public static event Action SeDesSeleccionaPar = delegate { };
+    public static event Action JuegoGanado = delegate { };
 
     // eventos de interfaz
-    public static event Action ButtonClickeado = delegate { };
+    public static event Action SeClickeaBoton = delegate { };
 
 
     public static void OnCartaDestruida()
     {
         Debug.Log("CartaDestruida");
-        CartaDestruida();
+        SeDestruyeCarta();
     }
-    public static void OnCartaRotada(CardController carta)
+    public static void OnCartaDescubierta(CardController carta)
     {
-        Debug.Log("CartaRotada");
-        CartaRotada(carta);
+        Debug.Log("CartaDescubierta");
+        SeDescubreCarta(carta);
     }
+
+    public static void OnCartaOcultada(CardController carta)
+    {
+        Debug.Log("CartaOcultada");
+        SeOcultaCarta(carta);
+    }
+
     public static void OnGameStarted()
     {
         Debug.Log("GameStarted");
-        GameStarted();
+        IniciaJuego();
     }
     public static void OnParSeleccionado()
     {
         Debug.Log("ParSeleccionado");
-        ParSeleccionado();
+        SeSeleccionaPar();
     }
 
     public static void OnParDesSeleccionado()
     {
         Debug.Log("ParDesSeleccionado");
-        ParDesSeleccionado();
+        SeDesSeleccionaPar();
     }
 
     public static void OnGanamosElJuego()
     {
         Debug.Log("Ganamos el juego!");
-        GanamosElJuego();
+        JuegoGanado();
     }
 
     public static void OnButtonClickeado()
     {
         Debug.Log("ButtonClickeado");
-        ButtonClickeado();
+        SeClickeaBoton();
     }
 
 }

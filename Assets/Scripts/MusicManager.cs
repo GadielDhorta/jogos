@@ -10,6 +10,8 @@ public class MusicManager : MonoBehaviour
     private static MusicManager instance;
     public AudioClip click;
     private AudioSource mouse;
+    public AudioClip flip;
+    private AudioSource flipado;
 
 
     public static MusicManager GetInstance()
@@ -19,12 +21,16 @@ public class MusicManager : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.ButtonClickeado += Reproducirclicks;
+        EventManager.SeClickeaBoton += Reproducirclicks;
+        EventManager.SeDescubreCarta += sonidocarta;
+        EventManager.SeOcultaCarta += sonidocarta;
     }
 
     void OnDisable()
     {
-        EventManager.ButtonClickeado -= Reproducirclicks;
+        EventManager.SeClickeaBoton -= Reproducirclicks;
+        EventManager.SeDescubreCarta -= sonidocarta;
+        EventManager.SeOcultaCarta -= sonidocarta;
     }
 
     void Awake()
@@ -50,10 +56,15 @@ public class MusicManager : MonoBehaviour
     private void Start()
     {
         mouse = GetComponent<AudioSource>();
+        flipado = GetComponent<AudioSource>();
     }
 
     public void Reproducirclicks()
     {
         mouse.PlayOneShot(click, 1.0f);
+    }
+    public void sonidocarta(CardController carta)
+    {
+        flipado.PlayOneShot(flip, 1.0f);
     }
 }

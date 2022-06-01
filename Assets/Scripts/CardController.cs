@@ -11,27 +11,30 @@ public class CardController : MonoBehaviour
     Sprite imagenAdelante;
 
 
+
+
     void OnEnable()
     {
-        EventManager.ParSeleccionado += ConGelarClickTemporalmente;
-        EventManager.ParDesSeleccionado += HabilitarClick;
+        EventManager.SeSeleccionaPar += ConGelarClickTemporalmente;
+        EventManager.SeDesSeleccionaPar += HabilitarClick;
     }
 
     void OnDisable()
     {
-        EventManager.ParSeleccionado -= ConGelarClickTemporalmente;
-        EventManager.ParDesSeleccionado -= HabilitarClick;
+        EventManager.SeSeleccionaPar -= ConGelarClickTemporalmente;
+        EventManager.SeDesSeleccionaPar -= HabilitarClick;
     }
     private void Start()
     {
         PanelAdelante = gameObject.transform.GetChild(1).gameObject;
+        
     }
 
     private void OnMouseDown()
     {
         if (this.tag != "Deshabilitado")
         {
-            rotar();
+            Rotar();
         }
     }
 
@@ -75,14 +78,15 @@ public class CardController : MonoBehaviour
         return gameObject.GetComponent<Rotate>();
     }
 
-    public void rotar()
+    public void Rotar()
     {
         CongelarClickIndefinidamente();
-        EventManager.OnCartaRotada(this);
+        EventManager.OnCartaDescubierta(this);
         StartCoroutine(RotarAntesDeTiempo());
+
     }
 
-    public void RotarSinNotificar()
+    public void Ocultar()
     {
         StartCoroutine(RotarDespuesDeTiempo());
     }
@@ -97,6 +101,7 @@ public class CardController : MonoBehaviour
     private IEnumerator RotarDespuesDeTiempo()
     {
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        EventManager.OnCartaOcultada(this);
         ScriptDeRotacion().StartRotatingBackwards(TiempoDeRotacion);
     }
 

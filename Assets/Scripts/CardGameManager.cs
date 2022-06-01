@@ -13,14 +13,14 @@ public class CardGameManager : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.CartaRotada += CartaClickeada;
-        EventManager.GameStarted += InicializarCartas;
+        EventManager.SeDescubreCarta += CartaClickeada;
+        EventManager.IniciaJuego += InicializarCartas;
     }
 
     void OnDisable()
     {
-        EventManager.CartaRotada -= CartaClickeada;
-        EventManager.GameStarted -= InicializarCartas;
+        EventManager.SeDescubreCarta -= CartaClickeada;
+        EventManager.IniciaJuego -= InicializarCartas;
     }
 
 
@@ -76,8 +76,8 @@ public class CardGameManager : MonoBehaviour
             }
             else
             {
-                ParDeCartas[0].RotarSinNotificar();
-                ParDeCartas[1].RotarSinNotificar();
+                ParDeCartas[0].Ocultar();
+                ParDeCartas[1].Ocultar();
             }
 
             ComprobarSiGanamos();
