@@ -9,6 +9,7 @@ public class CardGameManager : MonoBehaviour
     public Sprite[] Sprites;
     private CardController[] TodasLasCartas;
     private int numClicks = 0;
+    private int puntajebase = 0;
 
 
     void OnEnable()
@@ -51,6 +52,10 @@ public class CardGameManager : MonoBehaviour
     public void CartaClickeada(CardController Carta)
     {
         numClicks += 1;
+        puntajebase += 1;
+
+        Debug.Log("PuntajeBase");
+        Debug.Log(puntajebase);
 
         ParDeCartas[numClicks - 1] = Carta;
 
