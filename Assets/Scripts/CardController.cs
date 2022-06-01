@@ -27,7 +27,7 @@ public class CardController : MonoBehaviour
     private void Start()
     {
         PanelAdelante = gameObject.transform.GetChild(1).gameObject;
-        
+
     }
 
     private void OnMouseDown()
@@ -102,6 +102,7 @@ public class CardController : MonoBehaviour
     {
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         EventManager.OnCartaOcultada(this);
+        EventManager.OnParDesSeleccionado();
         ScriptDeRotacion().StartRotatingBackwards(TiempoDeRotacion);
     }
 
@@ -115,6 +116,7 @@ public class CardController : MonoBehaviour
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         Destroy(gameObject);
         EventManager.OnCartaDestruida();
+        EventManager.OnParDesSeleccionado();
     }
 
 
