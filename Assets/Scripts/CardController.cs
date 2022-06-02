@@ -6,7 +6,8 @@ public class CardController : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject PanelAdelante;
-
+    private GameObject Cruz;
+    private GameObject Tilde;
 
     Sprite imagenAdelante;
 
@@ -25,7 +26,8 @@ public class CardController : MonoBehaviour
     private void Start()
     {
         PanelAdelante = gameObject.transform.GetChild(1).gameObject;
-
+        Tilde = PanelAdelante.transform.GetChild(1).gameObject;
+        Cruz = PanelAdelante.transform.GetChild(0).gameObject;
     }
 
     private void OnMouseDown()
@@ -98,9 +100,11 @@ public class CardController : MonoBehaviour
 
     private IEnumerator RotarDespuesDeTiempo()
     {
+        Cruz.SetActive(true);
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         ScriptDeRotacion().StartRotatingBackwards(Globales.TiempoDeRotacion);
         yield return new WaitForSeconds(Globales.TiempoDeRotacion);
+        Cruz.SetActive(false);
         EventManager.OnCartaOcultada(this);
         this.HabilitarClick();
     }
@@ -112,6 +116,7 @@ public class CardController : MonoBehaviour
 
     private IEnumerator DestruirDespuesDeTiempo()
     {
+        Tilde.SetActive(true);
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         Destroy(gameObject);
         EventManager.OnCartaDestruida();
