@@ -11,6 +11,16 @@ public class PuntajeManager : MonoBehaviour
         IniciarEstrellas();
     }
 
+    private void OnEnable()
+    {
+        EventManager.JuegoGanado += MostrarEstrellas;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.JuegoGanado -= MostrarEstrellas;
+    }
+
     void IniciarEstrellas()
     {
         estrellas = new GameObject[transform.childCount];

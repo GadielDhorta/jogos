@@ -29,6 +29,7 @@ public class gamemanager : MonoBehaviour
     void OnDisable()
     {
         EventManager.JuegoGanado -= MostrarFinJuego;
+
     }
 
     private void Start()
@@ -59,17 +60,23 @@ public class gamemanager : MonoBehaviour
 
         Debug.Log("Puntaje(en estrellas):");
         Debug.Log(Puntaje);
+
+        IrAEscenaScore();
     }
 
     public void LoadScene(string scene)     //Resuleve en una corutina a que escena realizar el cambio y su animacion
     {
         StartCoroutine(TransitionOut(scene));
     }
+    public void IrAEscenaScore()
+    {
+        LoadScene("Score");
+
+    }
     public void RestartToMenu()                
     {
         LoadScene("Main");
     }
-
     public void RestartToGameEasy()                 
     {
         EventManager.OnGameStarted();
