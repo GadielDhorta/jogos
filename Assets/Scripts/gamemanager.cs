@@ -65,14 +65,31 @@ public class gamemanager : MonoBehaviour
     {
         StartCoroutine(TransitionOut(scene));
     }
-    public void RestartToMenu()                 //Cambia a escena Menu
+    public void RestartToMenu()                
     {
         LoadScene("Main");
     }
-    public void RestartToGame()                 //Cambia a escena SampleScene
+
+    public void RestartToGameEasy()                 
+    {
+        EventManager.OnGameStarted();
+        LoadScene("JuegoFacil");
+    }
+        public void RestartToGameMedium()                 
     {
         EventManager.OnGameStarted();
         LoadScene("Juego");
+    }
+        public void RestartToGameHard()                 
+    {
+        EventManager.OnGameStarted();
+        LoadScene("JuegoDificil");
+    }
+
+    public void RestartToGame()                
+    {
+        EventManager.OnGameStarted();
+        LoadScene("Dificultad");
     }
 
     IEnumerator TransitionOut(string scene)
