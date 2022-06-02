@@ -89,7 +89,7 @@ public class gamemanager : MonoBehaviour
     public void RestartToGame()                
     {
         EventManager.OnGameStarted();
-        LoadScene("Dificultad");
+        LoadScene("Dificultades");
     }
 
     IEnumerator TransitionOut(string scene)
