@@ -92,12 +92,19 @@ public class gamemanager : MonoBehaviour
         LoadScene("JuegoDificil");
     }
 
-    public void RestartToGame()                
+    public void CargarEscenaNiveles()                
     {
-        EventManager.OnGameStarted(nivelActual);
+        LoadScene("Niveles");
+    }
+    public void CargarEscenaDificultades()                
+    {
         LoadScene("Dificultades");
     }
 
+    public void SeleccionarNivel(string nivel){
+        nivelActual = nivel;
+        CargarEscenaDificultades();
+    }
     
     public void RestartScene()                
     {
