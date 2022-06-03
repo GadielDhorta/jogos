@@ -21,15 +21,15 @@ public class MusicManager : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.SeClickeaBoton += Reproducirclicks;
-        EventManager.SeDescubreCarta += sonidocarta;
+        EventManager.SeClickeaBoton += Reproducirclick;
+        EventManager.CartaComienzaADescubrirse += sonidocarta;
         EventManager.SeOcultaCarta += sonidocarta;
     }
 
     void OnDisable()
     {
-        EventManager.SeClickeaBoton -= Reproducirclicks;
-        EventManager.SeDescubreCarta -= sonidocarta;
+        EventManager.SeClickeaBoton -= Reproducirclick;
+        EventManager.CartaComienzaADescubrirse -= sonidocarta;
         EventManager.SeOcultaCarta -= sonidocarta;
     }
 
@@ -59,7 +59,7 @@ public class MusicManager : MonoBehaviour
         flipado = GetComponent<AudioSource>();
     }
 
-    public void Reproducirclicks()
+    public void Reproducirclick()
     {
         mouse.PlayOneShot(click, 1.0f);
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CardGameManager : MonoBehaviour
 {
     private CardController[] ParDeCartas = new CardController[2];
-    public Sprite[] Sprites;
+    private Sprite[] Sprites;
     private CardController[] TodasLasCartas;
     private int numClicks = 0;
     private int conteoClicksTotal = 0;
@@ -25,8 +25,11 @@ public class CardGameManager : MonoBehaviour
     }
 
 
-    void InicializarCartas()
+    void InicializarCartas(string nivel)
     {
+
+        CargarSprites(nivel);
+
         TodasLasCartas = new CardController[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -48,12 +51,16 @@ public class CardGameManager : MonoBehaviour
         for (int i = 0; i < TodasLasCartas.Length / 2; i++)
         {
             // los pares no se repiten, por lo que la cantidad de pares es cantidad de cartas /2
-            int indiceImagen = i;
+            int indiceImagen = Random.Range(i,Sprites.Length);
 
             TodasLasCartasRandom[i].SetearImagenAdelante(Sprites[indiceImagen]);
             TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
         }
 
+    }
+
+    void CargarSprites(string nivel){
+        Sprites = Resources.LoadAll<Sprite>("Sprites/" + nivel);
     }
 
 

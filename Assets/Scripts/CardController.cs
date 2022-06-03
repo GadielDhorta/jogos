@@ -90,7 +90,8 @@ public class CardController : MonoBehaviour
     }
 
     private IEnumerator RotarAntesDeTiempo()
-    {
+    {   
+        EventManager.OnCartaComienzaADescubrirse(this);
         ScriptDeRotacion().StartRotating(Globales.TiempoDeRotacion);
         yield return new WaitForSeconds(Globales.TiempoDeRotacion);
         EventManager.OnCartaDescubierta(this);

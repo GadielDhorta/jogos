@@ -19,7 +19,7 @@ public class gamemanager : MonoBehaviour
     public AudioSource musicMixer;  //Se indica el mixer "Musica"
     public Slider brillo;           //Se indica el slider "Brillo"
 
-
+    public static string nivelActual = "Geometria";
     // eventos
     void OnEnable()
     {
@@ -43,14 +43,14 @@ public class gamemanager : MonoBehaviour
         transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("entrada");                        //Activa la animacion de entrada a la escena
 
-        IniciarJuego();
+        IniciarJuego(nivelActual);
     }
 
-    private void IniciarJuego()
+    private void IniciarJuego(string nivel)
     {
         if (SceneManager.GetActiveScene().name.Contains("Juego"))
         {
-            EventManager.OnGameStarted();
+            EventManager.OnGameStarted(nivel);
         }
     }
 
@@ -78,30 +78,30 @@ public class gamemanager : MonoBehaviour
     }
     public void RestartToGameEasy()                 
     {
-        EventManager.OnGameStarted();
+        EventManager.OnGameStarted(nivelActual);
         LoadScene("JuegoFacil");
     }
         public void RestartToGameMedium()                 
     {
-        EventManager.OnGameStarted();
+        EventManager.OnGameStarted(nivelActual);
         LoadScene("JuegoMedio");
     }
         public void RestartToGameHard()                 
     {
-        EventManager.OnGameStarted();
+        EventManager.OnGameStarted(nivelActual);
         LoadScene("JuegoDificil");
     }
 
     public void RestartToGame()                
     {
-        EventManager.OnGameStarted();
+        EventManager.OnGameStarted(nivelActual);
         LoadScene("Dificultades");
     }
 
     
     public void RestartScene()                
     {
-        EventManager.OnGameStarted();
+        EventManager.OnGameStarted(nivelActual);
         LoadScene(SceneManager.GetActiveScene().name);
     }
 
