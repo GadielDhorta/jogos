@@ -10,13 +10,13 @@ public class PuntajeManager : MonoBehaviour
     void Start()
     {
         IniciarEstrellas();
-        StartCoroutine(MostrarEstrellasDespues(2));
+        StartCoroutine(MostrarEstrellasDespues(3));
 
     }
 
     private IEnumerator MostrarEstrellasDespues(int puntaje)
     {
-        yield return  new WaitForSeconds(3);
+        yield return  new WaitForSeconds(2);
         MostrarEstrellas(puntaje);
     }
 
@@ -37,7 +37,6 @@ public class PuntajeManager : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             estrellas[i] = transform.GetChild(i).gameObject;
-            estrellas[i].SetActive(false);
         }
     }
 
@@ -47,9 +46,7 @@ public class PuntajeManager : MonoBehaviour
         for (int i = 0; i < puntaje; i++) 
         {
             estrellas[i].SetActive(true);
-            estrellas[i].GetComponent<Animator>();
-            Debug.Log(i);
-            new WaitForSeconds(1.5f);
+            new WaitForSeconds(0.8f);
         }
             
     }
