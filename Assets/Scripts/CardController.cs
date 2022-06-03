@@ -101,6 +101,7 @@ public class CardController : MonoBehaviour
     private IEnumerator RotarDespuesDeTiempo()
     {
         Cruz.SetActive(true);
+        Handheld.Vibrate();
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         ScriptDeRotacion().StartRotatingBackwards(Globales.TiempoDeRotacion);
         yield return new WaitForSeconds(Globales.TiempoDeRotacion);
