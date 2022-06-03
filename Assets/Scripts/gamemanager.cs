@@ -48,7 +48,7 @@ public class gamemanager : MonoBehaviour
 
     private void IniciarJuego()
     {
-        if (SceneManager.GetActiveScene().name == "Juego")
+        if (SceneManager.GetActiveScene().name.Contains("Juego"))
         {
             EventManager.OnGameStarted();
         }
@@ -56,8 +56,6 @@ public class gamemanager : MonoBehaviour
 
     private void MostrarFinJuego(int Puntaje)
     {
-        GameObject.Find("Canvas").transform.Find("Ganaste").gameObject.SetActive(true);
-
         Debug.Log("Puntaje(en estrellas):");
         Debug.Log(Puntaje);
 
@@ -68,6 +66,7 @@ public class gamemanager : MonoBehaviour
     {
         StartCoroutine(TransitionOut(scene));
     }
+    
     public void IrAEscenaScore()
     {
         LoadScene("Score");
@@ -85,7 +84,7 @@ public class gamemanager : MonoBehaviour
         public void RestartToGameMedium()                 
     {
         EventManager.OnGameStarted();
-        LoadScene("Juego");
+        LoadScene("JuegoMedio");
     }
         public void RestartToGameHard()                 
     {
@@ -97,6 +96,13 @@ public class gamemanager : MonoBehaviour
     {
         EventManager.OnGameStarted();
         LoadScene("Dificultades");
+    }
+
+    
+    public void RestartScene()                
+    {
+        EventManager.OnGameStarted();
+        LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator TransitionOut(string scene)
