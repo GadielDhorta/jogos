@@ -108,7 +108,6 @@ public class gamemanager : MonoBehaviour
     
     public void RestartScene()                
     {
-        EventManager.OnGameStarted(nivelActual);
         LoadScene(SceneManager.GetActiveScene().name);
     }
 
