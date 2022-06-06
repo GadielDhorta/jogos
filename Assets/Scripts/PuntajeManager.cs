@@ -45,10 +45,16 @@ public class PuntajeManager : MonoBehaviour
         Debug.Log(puntaje);
         for (int i = 0; i < puntaje; i++) 
         {
-            estrellas[i].SetActive(true);
-            new WaitForSeconds(0.8f);
+
+            StartCoroutine(ActivarEstrella(i));
         }
             
     }
 
-   }
+    private IEnumerator ActivarEstrella(int numEstrella)
+    {
+        yield return new WaitForSeconds(numEstrella);
+        estrellas[numEstrella].SetActive(true);
+    }
+
+}
