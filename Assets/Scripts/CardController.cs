@@ -104,10 +104,10 @@ public class CardController : MonoBehaviour
         Cruz.SetActive(true);
         Handheld.Vibrate();
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        EventManager.OnCartaOcultada(this);
         ScriptDeRotacion().StartRotatingBackwards(Globales.TiempoDeRotacion);
         yield return new WaitForSeconds(Globales.TiempoDeRotacion);
         Cruz.SetActive(false);
-        EventManager.OnCartaOcultada(this);
         this.HabilitarClick();
     }
 
