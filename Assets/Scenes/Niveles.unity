@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402358, g: 0.49316692, b: 0.5722353, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,6 +288,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 868306102}
     m_Modifications:
+    - target: {fileID: 8533824377243800338, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1100076157}
+    - target: {fileID: 8533824377243800338, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1100076157}
+    - target: {fileID: 8533824377243800338, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NotifyButtonClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533824377243800338, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RestartToMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533824377243800338, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: gamemanager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533824377243800338, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: gamemanager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8533824377243800340, guid: 94a9ab60e2eaf9a4db506eecbaebfb79, type: 3}
       propertyPath: m_Name
       value: ButtonMainMenu
