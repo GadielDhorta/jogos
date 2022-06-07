@@ -15,9 +15,8 @@ public static class Globales
 public class gamemanager : MonoBehaviour
 {
     public GameObject transition;   //Se indica el prefab "Transicion"
-    public AudioMixer audioMixer;   //Se indica el mixer "Master"
     public AudioSource musicMixer;  //Se indica el mixer "Musica"
-    public Slider brillo;           //Se indica el slider "Brillo"
+
 
     public static string nivelActual = "Geometria";
     // eventos
@@ -122,21 +121,6 @@ public class gamemanager : MonoBehaviour
     {
         Application.Quit();
         System.Diagnostics.Process.GetCurrentProcess().Kill();
-    }
-
-    //A partir de aqui esta el codigo para manejar la escena Opciones
-    public void SetVolume(float volume)         //Cambia el volumen General
-    {
-        audioMixer.SetFloat("volume", volume);
-    }
-
-    public void SetVolumemusica(float volume)   //Cambia el volumen de la Musica 
-    {
-        musicMixer.volume = volume;
-    }
-    public void Brillo()                               //Cambia el brillo de la pantalla 
-    {
-        Screen.brightness = brillo.value;
     }
 
     public void NotifyButtonClick()

@@ -716,9 +716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 0}
-  audioMixer: {fileID: 0}
   musicMixer: {fileID: 0}
-  brillo: {fileID: 0}
 --- !u!1001 &1158837501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1156,6 +1154,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4327341220278931192, guid: d5e060888bd93fd4aa389bba030a6813, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4327341220278931192, guid: d5e060888bd93fd4aa389bba030a6813, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e54ab8242e6c90544aa16e4c67ccf375, type: 3}
     - target: {fileID: 4327341220278931194, guid: d5e060888bd93fd4aa389bba030a6813, type: 3}
       propertyPath: m_RootOrder
       value: 1
