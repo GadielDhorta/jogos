@@ -5,29 +5,36 @@ using UnityEngine;
 public class PuntajeManager : MonoBehaviour
 {
     private GameObject[] estrellas;
-    public int puntos = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         IniciarEstrellas();
-        StartCoroutine(MostrarEstrellasDespues(3));
+        StartCoroutine(MostrarEstrellasDespues());
 
     }
 
-    private IEnumerator MostrarEstrellasDespues(int puntaje)
+    public void MostrarEstrellas()
     {
-        yield return  new WaitForSeconds(2);
-        MostrarEstrellas(puntaje);
+        int puntaje = gamemanager.puntaje;
+
+        for (int i = 0; i < puntaje; i++)
+        {
+            StartCoroutine(ActivarEstrella(i));
+        }
     }
 
-    private void OnEnable()
+    private IEnumerator MostrarEstrellasDespues()
     {
-        EventManager.JuegoGanado += MostrarEstrellas;
+        yield return new WaitForSeconds(2);
+        MostrarEstrellas();
+
     }
 
-    private void OnDisable()
+    private IEnumerator ActivarEstrella(int numEstrella)
     {
-        EventManager.JuegoGanado -= MostrarEstrellas;
+        yield return new WaitForSeconds(numEstrella);
+        estrellas[numEstrella].SetActive(true);
     }
 
     void IniciarEstrellas()
@@ -38,23 +45,6 @@ public class PuntajeManager : MonoBehaviour
         {
             estrellas[i] = transform.GetChild(i).gameObject;
         }
-    }
-
-    public void MostrarEstrellas(int puntaje)
-    {
-        Debug.Log(puntaje);
-        for (int i = 0; i < puntaje; i++) 
-        {
-
-            StartCoroutine(ActivarEstrella(i));
-        }
-            
-    }
-
-    private IEnumerator ActivarEstrella(int numEstrella)
-    {
-        yield return new WaitForSeconds(numEstrella);
-        estrellas[numEstrella].SetActive(true);
     }
 
 }

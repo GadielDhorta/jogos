@@ -18,6 +18,7 @@ public class gamemanager : MonoBehaviour
     public AudioSource musicMixer;  //Se indica el mixer "Musica"
 
 
+    public static int puntaje = 0;
     public static string nivelActual = "Geometria";
     // eventos
     void OnEnable()
@@ -55,8 +56,7 @@ public class gamemanager : MonoBehaviour
 
     private void MostrarFinJuego(int Puntaje)
     {
-        Debug.Log("Puntaje(en estrellas):");
-        Debug.Log(Puntaje);
+        gamemanager.puntaje = Puntaje;
 
         IrAEscenaScore();
     }
@@ -65,47 +65,48 @@ public class gamemanager : MonoBehaviour
     {
         StartCoroutine(TransitionOut(scene));
     }
-    
+
     public void IrAEscenaScore()
     {
         LoadScene("Score");
 
     }
-    public void RestartToMenu()                
+    public void RestartToMenu()
     {
         LoadScene("Main");
     }
-    public void RestartToGameEasy()                 
+    public void RestartToGameEasy()
     {
         EventManager.OnGameStarted(nivelActual);
         LoadScene("JuegoFacil");
     }
-        public void RestartToGameMedium()                 
+    public void RestartToGameMedium()
     {
         EventManager.OnGameStarted(nivelActual);
         LoadScene("JuegoMedio");
     }
-        public void RestartToGameHard()                 
+    public void RestartToGameHard()
     {
         EventManager.OnGameStarted(nivelActual);
         LoadScene("JuegoDificil");
     }
 
-    public void CargarEscenaNiveles()                
+    public void CargarEscenaNiveles()
     {
         LoadScene("Niveles");
     }
-    public void CargarEscenaDificultades()                
+    public void CargarEscenaDificultades()
     {
         LoadScene("Dificultades");
     }
 
-    public void SeleccionarNivel(string nivel){
+    public void SeleccionarNivel(string nivel)
+    {
         nivelActual = nivel;
         CargarEscenaDificultades();
     }
-    
-    public void RestartScene()                
+
+    public void RestartScene()
     {
         LoadScene(SceneManager.GetActiveScene().name);
     }
