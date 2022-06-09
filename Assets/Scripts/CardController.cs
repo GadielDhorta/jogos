@@ -122,9 +122,11 @@ public class CardController : MonoBehaviour
 
     private IEnumerator RotarDespuesDeTiempo()
     {
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 3 / 4);
         Cruz.SetActive(true);
         Handheld.Vibrate();
-        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas / 4);
+
         EventManager.OnCartaOcultada(this);
         ScriptDeRotacion().StartRotatingBackwards(Globales.TiempoDeRotacion);
         yield return new WaitForSeconds(Globales.TiempoDeRotacion);
