@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public static class Globales
 {
-    public static float TiempoDeMuestraDeCartas = 1f;
+    public static float TiempoDeMuestraDeCartas = 2f;
     public static float TiempoDeRotacion = 0.5f;
 }
 

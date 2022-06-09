@@ -27,6 +27,10 @@ public class CardGameManager : MonoBehaviour
 
     void InicializarCartas(string nivel)
     {
+        InicializarCartas(nivel, true);
+    }
+    void InicializarCartas(string nivel, bool habilitarTexto)
+    {
 
         CargarSprites(nivel);
 
@@ -51,15 +55,23 @@ public class CardGameManager : MonoBehaviour
         for (int i = 0; i < TodasLasCartas.Length / 2; i++)
         {
             // los pares no se repiten, por lo que la cantidad de pares es cantidad de cartas /2
-            int indiceImagen = Random.Range(i,Sprites.Length);
+            int indiceImagen = Random.Range(i, Sprites.Length);
 
             TodasLasCartasRandom[i].SetearImagenAdelante(Sprites[indiceImagen]);
-            TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
+            if (habilitarTexto)
+            {
+                TodasLasCartasRandom[lastIndex - i].SetearTextoAdelante(Sprites[indiceImagen].name);
+            }
+            else
+            {
+                TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
+            }
         }
 
     }
 
-    void CargarSprites(string nivel){
+    void CargarSprites(string nivel)
+    {
         Sprites = Resources.LoadAll<Sprite>("Sprites/" + nivel);
     }
 
@@ -86,7 +98,7 @@ public class CardGameManager : MonoBehaviour
 
             EventManager.OnParSeleccionado();
 
-            if (ParDeCartas[0].getImagenAdelante().name == ParDeCartas[1].getImagenAdelante().name)
+            if (ParDeCartas[0].GetName() == ParDeCartas[1].GetName())
             {
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();

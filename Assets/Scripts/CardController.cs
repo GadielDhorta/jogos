@@ -9,7 +9,11 @@ public class CardController : MonoBehaviour
     private GameObject Cruz;
     private GameObject Tilde;
 
-    Sprite imagenAdelante;
+    private GameObject GameObjectTexto;
+    private UnityEngine.UI.Text Texto;
+    private string _texto;
+
+    private Sprite imagenAdelante;
 
 
 
@@ -28,8 +32,13 @@ public class CardController : MonoBehaviour
         PanelAdelante = gameObject.transform.GetChild(1).gameObject;
         Tilde = PanelAdelante.transform.GetChild(1).gameObject;
         Cruz = PanelAdelante.transform.GetChild(0).gameObject;
+        GameObjectTexto = ObtenerCanvas().transform.GetChild(0).gameObject;
+        Texto = GameObjectTexto.GetComponent<UnityEngine.UI.Text>();
     }
-
+    private GameObject ObtenerCanvas()
+    {
+        return PanelAdelante.transform.GetChild(2).gameObject;
+    }
     private void OnMouseDown()
     {
         if (this.tag != "Deshabilitado")
@@ -67,8 +76,20 @@ public class CardController : MonoBehaviour
     public void SetearImagenAdelante(Sprite sprite)
     {
         PanelAdelante.GetComponent<SpriteRenderer>().sprite = sprite;
+        _texto = sprite.name;
     }
 
+    public void SetearTextoAdelante(string text)
+    {
+        GameObjectTexto.SetActive(true);
+        Texto.text = text;
+        _texto = text;
+    }
+
+    public string GetName()
+    {
+        return _texto;
+    }
     private GameObject getCarta()
     {
         return gameObject.transform.parent.gameObject;
@@ -90,7 +111,7 @@ public class CardController : MonoBehaviour
     }
 
     private IEnumerator RotarAntesDeTiempo()
-    {   
+    {
         EventManager.OnCartaComienzaADescubrirse(this);
         ScriptDeRotacion().StartRotating(Globales.TiempoDeRotacion);
         yield return new WaitForSeconds(Globales.TiempoDeRotacion);
