@@ -273,7 +273,7 @@ PrefabInstance:
     - target: {fileID: 8986778078849804521, guid: dfc791cae673ad54f95dfb5d7dac7c30, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5288537600957d24c9a296796268a5e4, type: 3}
+      objectReference: {fileID: 21300000, guid: 1c6792f7f86eae34aadfebcba0541901, type: 3}
     - target: {fileID: 8986778078849804526, guid: dfc791cae673ad54f95dfb5d7dac7c30, type: 3}
       propertyPath: m_Name
       value: ButtonDeportes
