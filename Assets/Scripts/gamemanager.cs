@@ -53,6 +53,7 @@ public class gamemanager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 70;
         musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
 
         if (transition == null)
