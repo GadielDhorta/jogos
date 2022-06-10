@@ -103,6 +103,8 @@ public class CardGameManager : MonoBehaviour
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();
 
+                EventManager.OnParIgual();
+
                 ComprobarSiGanamos();
             }
             else

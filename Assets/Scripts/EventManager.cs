@@ -17,6 +17,7 @@ public class EventManager : MonoBehaviour
     public static event Action SeSeleccionaPar = delegate { };
     public static event Action SeDesSeleccionaPar = delegate { };
     public static event Action<int> JuegoGanado = delegate { };
+    public static event Action ParIgual = delegate { };
 
     // eventos de interfaz
     public static event Action SeClickeaBoton = delegate { };
@@ -71,6 +72,12 @@ public class EventManager : MonoBehaviour
     {
         Debug.Log("ButtonClickeado");
         SeClickeaBoton();
+    }
+
+    public static void OnParIgual()
+    {
+        Debug.Log("ParIgual");
+        ParIgual();
     }
 
 }
