@@ -16,8 +16,6 @@ public class CardController : MonoBehaviour
     private Sprite imagenAdelante;
 
 
-
-
     void OnEnable()
     {
         EventManager.SeSeleccionaPar += ConGelarClickTemporalmente;
