@@ -6,10 +6,10 @@ using UnityEngine;
 public class CardGameManager : MonoBehaviour
 {
     private CardController[] ParDeCartas = new CardController[2];
-    public Sprite[] Sprites;
+    private Sprite[] Sprites;
     private CardController[] TodasLasCartas;
     private int numClicks = 0;
-    private int puntajebase = 0;
+    private int conteoClicksTotal = 0;
 
 
     void OnEnable()
@@ -25,13 +25,26 @@ public class CardGameManager : MonoBehaviour
     }
 
 
-    void InicializarCartas()
+    void InicializarCartas(string nivel)
     {
+        InicializarCartas(nivel, Globales.SabeLeer);
+    }
+    void InicializarCartas(string nivel, bool habilitarTexto)
+    {
+
+        CargarSprites(nivel);
+
         TodasLasCartas = new CardController[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
             TodasLasCartas[i] = transform.GetChild(i).gameObject.GetComponent<CardController>();
         }
+
+        if (Sprites.Length < TodasLasCartas.Length / 2)
+        {
+            Debug.Log("Error, no nos alcanzan los sprites");
+        }
+
 
         // randomizando
         System.Random rnd = new System.Random();
@@ -41,28 +54,40 @@ public class CardGameManager : MonoBehaviour
         int lastIndex = TodasLasCartas.Length - 1;
         for (int i = 0; i < TodasLasCartas.Length / 2; i++)
         {
-            int indiceImagen = Random.Range(0, Sprites.Length);
+            // los pares no se repiten, por lo que la cantidad de pares es cantidad de cartas /2
+            int indiceImagen = Random.Range(i, Sprites.Length);
 
             TodasLasCartasRandom[i].SetearImagenAdelante(Sprites[indiceImagen]);
-            TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
+            if (habilitarTexto)
+            {
+                TodasLasCartasRandom[lastIndex - i].SetearTextoAdelante(Sprites[indiceImagen].name);
+            }
+            else
+            {
+                TodasLasCartasRandom[lastIndex - i].SetearImagenAdelante(Sprites[indiceImagen]);
+            }
         }
 
     }
 
+    void CargarSprites(string nivel)
+    {
+        Sprites = Resources.LoadAll<Sprite>("Sprites/" + nivel);
+    }
+
+
     public void CartaClickeada(CardController Carta)
     {
         numClicks += 1;
-        puntajebase += 1;
+        conteoClicksTotal += 1;
 
-        Debug.Log("PuntajeBase");
-        Debug.Log(puntajebase);
+        Puntaje();
 
         ParDeCartas[numClicks - 1] = Carta;
 
         if (numClicks == 2)
         {
             numClicks = 0;
-
 
             if (ParDeCartas[0].transform.position.Equals(ParDeCartas[1].transform.position))
             {
@@ -73,11 +98,12 @@ public class CardGameManager : MonoBehaviour
 
             EventManager.OnParSeleccionado();
 
-            if (ParDeCartas[0].getImagenAdelante().name == ParDeCartas[1].getImagenAdelante().name)
+            if (ParDeCartas[0].GetName() == ParDeCartas[1].GetName())
             {
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();
 
+                ComprobarSiGanamos();
             }
             else
             {
@@ -85,8 +111,18 @@ public class CardGameManager : MonoBehaviour
                 ParDeCartas[1].Ocultar();
             }
 
-            ComprobarSiGanamos();
+            NotificarParDesSeleccionado();
         }
+    }
+
+    public void NotificarParDesSeleccionado()
+    {   //hay que esperar a que el par deje de mostrarse, pero solo queremos notificar del evento una sola vez, por esto no se hace dentro de cardcontroller
+        StartCoroutine(NotificarQueSeDesSeleccionoPar());
+    }
+    private IEnumerator NotificarQueSeDesSeleccionoPar()
+    {
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
+        EventManager.OnParDesSeleccionado();
     }
 
     public void ComprobarSiGanamos()
@@ -96,14 +132,55 @@ public class CardGameManager : MonoBehaviour
 
     private IEnumerator ComprobarSiGanamosElJuego()
     {
-        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 2);
-
-        EventManager.OnParDesSeleccionado();
+        // hay que esperar un tiempo porque hacer esto con eventos no sirve, unity tarda en destruir los objetos
+        yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 1.5f);
 
         if (transform.childCount == 0)
         {
-            EventManager.OnGanamosElJuego();
+            EventManager.OnGanamosElJuego(this.Puntaje());
         }
 
+    }
+
+    private int Puntaje()
+    {
+        int baseMuyBueno = 3;
+        int baseBueno = 4;
+        int baseMalo = 6;
+
+        int pares = TodasLasCartas.Length / 2;
+        int factor = pares - 1;
+
+        int MuyBuenoAjustado = baseMuyBueno * factor;
+        int BuenoAjustado = baseBueno * factor;
+        int MaloAjustado = baseMalo * factor;
+
+        int resultado = 0;
+
+
+
+        if (conteoClicksTotal == pares * 2)
+        {
+            // perfecto
+            resultado = 4;
+        }
+        else if (conteoClicksTotal <= MuyBuenoAjustado)
+        {
+            resultado = 3;
+        }
+        else if (conteoClicksTotal <= BuenoAjustado)
+        {
+            resultado = 2;
+        }
+        else if (conteoClicksTotal <= MaloAjustado)
+        {
+            resultado = 1;
+        }
+        else
+        {
+            resultado = 0;
+        }
+
+        return resultado;
     }
 }

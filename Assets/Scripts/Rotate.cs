@@ -7,10 +7,13 @@ public class Rotate : MonoBehaviour
     float angle = 180;
 
     float seconds;
+
+    Transform _transform;
     public float rotationSpeed;
 
     public void StartRotating(float time)
-    {
+    {   
+        _transform = gameObject.transform;
         Vector3 rotationVector = new Vector3(0, angle, 0);
         Quaternion targetQuarternion = Quaternion.Euler(rotationVector);
         RotateOverTime(gameObject.transform, targetQuarternion, time);
@@ -20,7 +23,7 @@ public class Rotate : MonoBehaviour
     {
         Vector3 rotationVector = new Vector3(0, 2 * angle, 0);
         Quaternion targetQuarternion = Quaternion.Euler(rotationVector);
-        RotateOverTime(gameObject.transform, targetQuarternion, time);
+        RotateOverTime(_transform, targetQuarternion, time);
     }
     private void RotateOverTime(Transform transformToRotate, Quaternion targetRotation, float duration)
     {

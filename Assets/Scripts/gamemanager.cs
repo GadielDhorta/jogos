@@ -6,19 +6,38 @@ using System;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+public enum nivelesDeLectura
+{
+    nula = 0,
+    sabe = 1,
+    sabeBien = 2
+}
 public static class Globales
 {
-    public static float TiempoDeMuestraDeCartas = 1f;
+    public static float TiempoDeMuestraDeCartasBase = 2f;
+    public static float TiempoDeRotacionBase = 0.5f;
+    public static float TiempoDeMuestraDeCartas = 2f;
+    public static float TiempoDeRotacion = 0.5f;
 
+    public static bool SabeLeer = false;
+
+    public static void aplicarCoeficiente(float coef)
+    {
+        Globales.TiempoDeMuestraDeCartas = Globales.TiempoDeMuestraDeCartasBase * coef;
+        Globales.TiempoDeRotacion = Globales.TiempoDeRotacionBase * coef;
+    }
 }
 
 public class gamemanager : MonoBehaviour
 {
     public GameObject transition;   //Se indica el prefab "Transicion"
-    public AudioMixer audioMixer;   //Se indica el mixer "Master"
     public AudioSource musicMixer;  //Se indica el mixer "Musica"
-    public Slider brillo;           //Se indica el slider "Brillo"
 
+
+    public static int puntaje = 0;
+    public static string nivelActual = "Geometria";
+
+    public static nivelesDeLectura nivelDeLectura;
 
     // eventos
     void OnEnable()
@@ -29,10 +48,12 @@ public class gamemanager : MonoBehaviour
     void OnDisable()
     {
         EventManager.JuegoGanado -= MostrarFinJuego;
+
     }
 
     private void Start()
     {
+        Application.targetFrameRate = 70;
         musicMixer = GameObject.Find("MusicManager").GetComponent<AudioSource>();   //Busca el objeto musica para cambiarle el volumen
 
         if (transition == null)
@@ -42,34 +63,112 @@ public class gamemanager : MonoBehaviour
         transition.SetActive(true);                             //Activa capa "Transicion"
         transition.GetComponent<Animator>().Play("entrada");                        //Activa la animacion de entrada a la escena
 
-        IniciarJuego();
+        IniciarJuego(nivelActual);
     }
 
-    private void IniciarJuego()
+    public void setearNivelDeLecturaNoSabe()
     {
-        if( SceneManager.GetActiveScene().name == "Juego")
+        setearNivelDeLectura(nivelesDeLectura.nula);
+    }
+    public void setearNivelDeLecturaSabe()
+    {
+        setearNivelDeLectura(nivelesDeLectura.sabe);
+    }
+
+    public void setearNivelDeLecturaSabeBien()
+    {
+        setearNivelDeLectura(nivelesDeLectura.sabeBien);
+    }
+
+    private void setearNivelDeLectura(nivelesDeLectura nivel)
+    {
+        nivelDeLectura = nivel;
+
+        switch (nivelDeLectura)
         {
-            EventManager.OnGameStarted();
+            case nivelesDeLectura.nula:
+                Globales.aplicarCoeficiente(1.5f);
+                Globales.SabeLeer = false;
+                break;
+            case nivelesDeLectura.sabe:
+                Globales.aplicarCoeficiente(1f);
+                Globales.SabeLeer = true;
+                break;
+            case nivelesDeLectura.sabeBien:
+                Globales.aplicarCoeficiente(0.8f);
+                Globales.SabeLeer = true;
+                break;
+
+            default:
+                Globales.aplicarCoeficiente(1.5f);
+                Globales.SabeLeer = true;
+                break;
         }
     }
 
-    private void MostrarFinJuego()
+    private void IniciarJuego(string nivel)
     {
-        GameObject.Find("Canvas").transform.Find("Ganaste").gameObject.SetActive(true);
+        if (SceneManager.GetActiveScene().name.Contains("Juego"))
+        {
+            EventManager.OnGameStarted(nivel);
+        }
     }
 
-    public void LoadScene(string scene)     //Resuleve en una corutina a que escena realizar el cambio y su animacion
+    private void MostrarFinJuego(int Puntaje)
+    {
+        gamemanager.puntaje = Puntaje;
+
+        IrAEscenaScore();
+    }
+
+    public void LoadScene(string scene)     //Resuelve en una corutina a que escena realizar el cambio y su animacion
     {
         StartCoroutine(TransitionOut(scene));
     }
-    public void RestartToMenu()                 //Cambia a escena Menu
+
+    public void IrAEscenaScore()
+    {
+        LoadScene("Score");
+
+    }
+    public void RestartToMenu()
     {
         LoadScene("Main");
     }
-    public void RestartToGame()                 //Cambia a escena SampleScene
+    public void RestartToGameEasy()
     {
-        EventManager.OnGameStarted();
-        LoadScene("Juego");
+        EventManager.OnGameStarted(nivelActual);
+        LoadScene("JuegoFacil");
+    }
+    public void RestartToGameMedium()
+    {
+        EventManager.OnGameStarted(nivelActual);
+        LoadScene("JuegoMedio");
+    }
+    public void RestartToGameHard()
+    {
+        EventManager.OnGameStarted(nivelActual);
+        LoadScene("JuegoDificil");
+    }
+
+    public void CargarEscenaNiveles()
+    {
+        LoadScene("Niveles");
+    }
+    public void CargarEscenaDificultades()
+    {
+        LoadScene("Dificultades");
+    }
+
+    public void SeleccionarNivel(string nivel)
+    {
+        nivelActual = nivel;
+        CargarEscenaDificultades();
+    }
+
+    public void RestartScene()
+    {
+        LoadScene(SceneManager.GetActiveScene().name);
     }
 
     IEnumerator TransitionOut(string scene)
@@ -83,21 +182,6 @@ public class gamemanager : MonoBehaviour
     {
         Application.Quit();
         System.Diagnostics.Process.GetCurrentProcess().Kill();
-    }
-
-    //A partir de aqui esta el codigo para manejar la escena Opciones
-    public void SetVolume(float volume)         //Cambia el volumen General
-    {
-        audioMixer.SetFloat("volume", volume);
-    }
-
-    public void SetVolumemusica(float volume)   //Cambia el volumen de la Musica 
-    {
-        musicMixer.volume = volume;
-    }
-    public void Brillo()                               //Cambia el brillo de la pantalla 
-    {
-        Screen.brightness = brillo.value;
     }
 
     public void NotifyButtonClick()

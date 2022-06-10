@@ -7,15 +7,16 @@ public class EventManager : MonoBehaviour
 {
 
     public static event Action<CardController> SeDescubreCarta = delegate { };
+    public static event Action<CardController> CartaComienzaADescubrirse = delegate { };
     public static event Action<CardController> SeOcultaCarta = delegate { };
 
     public static event Action SeDestruyeCarta = delegate { };
 
-    public static event Action IniciaJuego = delegate { };
+    public static event Action<string> IniciaJuego = delegate { };
 
     public static event Action SeSeleccionaPar = delegate { };
     public static event Action SeDesSeleccionaPar = delegate { };
-    public static event Action JuegoGanado = delegate { };
+    public static event Action<int> JuegoGanado = delegate { };
 
     // eventos de interfaz
     public static event Action SeClickeaBoton = delegate { };
@@ -32,16 +33,21 @@ public class EventManager : MonoBehaviour
         SeDescubreCarta(carta);
     }
 
+    public static void OnCartaComienzaADescubrirse(CardController carta){
+        Debug.Log("CartaComienzaADescubrirse");
+        CartaComienzaADescubrirse(carta);
+    }
+
     public static void OnCartaOcultada(CardController carta)
     {
         Debug.Log("CartaOcultada");
         SeOcultaCarta(carta);
     }
 
-    public static void OnGameStarted()
+    public static void OnGameStarted(string nivel)
     {
         Debug.Log("GameStarted");
-        IniciaJuego();
+        IniciaJuego(nivel);
     }
     public static void OnParSeleccionado()
     {
@@ -55,10 +61,10 @@ public class EventManager : MonoBehaviour
         SeDesSeleccionaPar();
     }
 
-    public static void OnGanamosElJuego()
+    public static void OnGanamosElJuego(int Puntaje)
     {
         Debug.Log("Ganamos el juego!");
-        JuegoGanado();
+        JuegoGanado(Puntaje);
     }
 
     public static void OnButtonClickeado()
