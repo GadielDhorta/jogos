@@ -1356,6 +1356,10 @@ PrefabInstance:
       propertyPath: flip
       value: 
       objectReference: {fileID: 8300000, guid: 736855f9a468b554f81be8b0d5c76048, type: 3}
+    - target: {fileID: 4327341220278931195, guid: d5e060888bd93fd4aa389bba030a6813, type: 3}
+      propertyPath: cartaok
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c7ab662d7c3d35458ecb95b0ebd69d4, type: 3}
     - target: {fileID: 4327341220278931197, guid: d5e060888bd93fd4aa389bba030a6813, type: 3}
       propertyPath: m_Name
       value: MusicManager
