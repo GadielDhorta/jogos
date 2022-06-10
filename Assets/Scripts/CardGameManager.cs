@@ -27,7 +27,7 @@ public class CardGameManager : MonoBehaviour
 
     void InicializarCartas(string nivel)
     {
-        InicializarCartas(nivel, true);
+        InicializarCartas(nivel, Globales.SabeLeer);
     }
     void InicializarCartas(string nivel, bool habilitarTexto)
     {

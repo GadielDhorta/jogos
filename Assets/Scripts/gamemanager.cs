@@ -6,10 +6,26 @@ using System;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+public enum nivelesDeLectura
+{
+    nula = 0,
+    sabe = 1,
+    sabeBien = 2
+}
 public static class Globales
 {
+    public static float TiempoDeMuestraDeCartasBase = 2f;
+    public static float TiempoDeRotacionBase = 0.5f;
     public static float TiempoDeMuestraDeCartas = 2f;
     public static float TiempoDeRotacion = 0.5f;
+
+    public static bool SabeLeer = false;
+
+    public static void aplicarCoeficiente(float coef)
+    {
+        Globales.TiempoDeMuestraDeCartas = Globales.TiempoDeMuestraDeCartasBase * coef;
+        Globales.TiempoDeRotacion = Globales.TiempoDeRotacionBase * coef;
+    }
 }
 
 public class gamemanager : MonoBehaviour
@@ -20,6 +36,9 @@ public class gamemanager : MonoBehaviour
 
     public static int puntaje = 0;
     public static string nivelActual = "Geometria";
+
+    public static nivelesDeLectura nivelDeLectura;
+
     // eventos
     void OnEnable()
     {
@@ -46,6 +65,46 @@ public class gamemanager : MonoBehaviour
         IniciarJuego(nivelActual);
     }
 
+    public void setearNivelDeLecturaNoSabe()
+    {
+        setearNivelDeLectura(nivelesDeLectura.nula);
+    }
+    public void setearNivelDeLecturaSabe()
+    {
+        setearNivelDeLectura(nivelesDeLectura.sabe);
+    }
+
+    public void setearNivelDeLecturaSabeBien()
+    {
+        setearNivelDeLectura(nivelesDeLectura.sabeBien);
+    }
+
+    private void setearNivelDeLectura(nivelesDeLectura nivel)
+    {
+        nivelDeLectura = nivel;
+
+        switch (nivelDeLectura)
+        {
+            case nivelesDeLectura.nula:
+                Globales.aplicarCoeficiente(1.5f);
+                Globales.SabeLeer = false;
+                break;
+            case nivelesDeLectura.sabe:
+                Globales.aplicarCoeficiente(1f);
+                Globales.SabeLeer = true;
+                break;
+            case nivelesDeLectura.sabeBien:
+                Globales.aplicarCoeficiente(0.8f);
+                Globales.SabeLeer = true;
+                break;
+
+            default:
+                Globales.aplicarCoeficiente(1.5f);
+                Globales.SabeLeer = true;
+                break;
+        }
+    }
+
     private void IniciarJuego(string nivel)
     {
         if (SceneManager.GetActiveScene().name.Contains("Juego"))
@@ -61,7 +120,7 @@ public class gamemanager : MonoBehaviour
         IrAEscenaScore();
     }
 
-    public void LoadScene(string scene)     //Resuleve en una corutina a que escena realizar el cambio y su animacion
+    public void LoadScene(string scene)     //Resuelve en una corutina a que escena realizar el cambio y su animacion
     {
         StartCoroutine(TransitionOut(scene));
     }
