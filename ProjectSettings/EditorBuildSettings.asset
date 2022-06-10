@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Lengua.unity
     guid: ef7fdb781de54354aa5788d49954554a
   - enabled: 1
+    path: Assets/Scenes/Lectura.unity
+    guid: 3808e3011ae89c745993218b51c08b90
+  - enabled: 1
     path: Assets/Scenes/Score.unity
     guid: 922daff53f2e94f4182b29cea36c4b4e
   m_configObjects: {}
