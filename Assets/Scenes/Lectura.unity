@@ -217,7 +217,7 @@ PrefabInstance:
     - target: {fileID: 8986778078849804521, guid: dfc791cae673ad54f95dfb5d7dac7c30, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a810c5d348fb6334ab2e5f639a7dd031, type: 3}
+      objectReference: {fileID: 21300000, guid: a383272b0a1998e4f97e23e4969b6047, type: 3}
     - target: {fileID: 8986778078849804526, guid: dfc791cae673ad54f95dfb5d7dac7c30, type: 3}
       propertyPath: m_Name
       value: ButtonSeLeer
@@ -565,7 +565,7 @@ PrefabInstance:
     - target: {fileID: 8986778078849804521, guid: dfc791cae673ad54f95dfb5d7dac7c30, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ee500190f630cf54e977b15565486540, type: 3}
+      objectReference: {fileID: 21300000, guid: a810c5d348fb6334ab2e5f639a7dd031, type: 3}
     - target: {fileID: 8986778078849804526, guid: dfc791cae673ad54f95dfb5d7dac7c30, type: 3}
       propertyPath: m_Name
       value: ButtonLeoFluido
