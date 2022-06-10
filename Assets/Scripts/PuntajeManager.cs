@@ -14,6 +14,11 @@ public class PuntajeManager : MonoBehaviour
 
     }
 
+    public void iniciarAnimacionIrseDeNivel()
+    {
+        Animator animator = gameObject.GetComponent<Animator>();
+        animator.Play("irse de escena");
+    }
     public void MostrarEstrellas()
     {
         int puntaje = gamemanager.puntaje;
