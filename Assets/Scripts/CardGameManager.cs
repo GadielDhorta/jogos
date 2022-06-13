@@ -46,7 +46,7 @@ public class CardGameManager : MonoBehaviour
         }
 
 
-        // randomizando
+        // Se barajan las cartas
         System.Random rnd = new System.Random();
         CardController[] TodasLasCartasRandom = TodasLasCartas.OrderBy(x => rnd.Next()).ToArray();
 

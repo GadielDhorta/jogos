@@ -43,9 +43,13 @@ public class MusicManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
-        else
+        if (instance != null && instance != this) //jonathan asi se hace
         {
-            Destroy(this);
+            Destroy(this.gameObject);
+        }
+        if (GameObject.Find("MusicManager"))
+        {
+            Debug.Log("existe");
         }
     }
 
@@ -61,6 +65,8 @@ public class MusicManager : MonoBehaviour
         mouse = GetComponent<AudioSource>();
         flipado = GetComponent<AudioSource>();
         cardbien = GetComponent<AudioSource>();
+
+
     }
 
     public void Reproducirclick()
