@@ -17,6 +17,7 @@ public class EventManager : MonoBehaviour
     public static event Action SeSeleccionaPar = delegate { };
     public static event Action SeDesSeleccionaPar = delegate { };
     public static event Action<int> JuegoGanado = delegate { };
+    public static event Action ParIgual = delegate { };
 
     // eventos de interfaz
     public static event Action SeClickeaBoton = delegate { };
@@ -29,35 +30,29 @@ public class EventManager : MonoBehaviour
     }
     public static void OnCartaDescubierta(CardController carta)
     {
-        Debug.Log("CartaDescubierta");
         SeDescubreCarta(carta);
     }
 
     public static void OnCartaComienzaADescubrirse(CardController carta){
-        Debug.Log("CartaComienzaADescubrirse");
         CartaComienzaADescubrirse(carta);
     }
 
     public static void OnCartaOcultada(CardController carta)
     {
-        Debug.Log("CartaOcultada");
         SeOcultaCarta(carta);
     }
 
     public static void OnGameStarted(string nivel)
     {
-        Debug.Log("GameStarted");
         IniciaJuego(nivel);
     }
     public static void OnParSeleccionado()
     {
-        Debug.Log("ParSeleccionado");
         SeSeleccionaPar();
     }
 
     public static void OnParDesSeleccionado()
     {
-        Debug.Log("ParDesSeleccionado");
         SeDesSeleccionaPar();
     }
 
@@ -69,8 +64,12 @@ public class EventManager : MonoBehaviour
 
     public static void OnButtonClickeado()
     {
-        Debug.Log("ButtonClickeado");
         SeClickeaBoton();
+    }
+
+    public static void OnParIgual()
+    {
+        ParIgual();
     }
 
 }

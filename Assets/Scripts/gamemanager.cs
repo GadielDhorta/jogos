@@ -24,7 +24,7 @@ public static class Globales
     public static void aplicarCoeficiente(float coef)
     {
         Globales.TiempoDeMuestraDeCartas = Globales.TiempoDeMuestraDeCartasBase * coef;
-        Globales.TiempoDeRotacion = Globales.TiempoDeRotacionBase * coef;
+        Globales.TiempoDeRotacion = Globales.TiempoDeRotacionBase;
     }
 }
 

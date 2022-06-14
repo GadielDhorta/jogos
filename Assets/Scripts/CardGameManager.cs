@@ -11,24 +11,74 @@ public class CardGameManager : MonoBehaviour
     private int numClicks = 0;
     private int conteoClicksTotal = 0;
 
-
+    
     void OnEnable()
     {
         EventManager.SeDescubreCarta += CartaClickeada;
-        EventManager.IniciaJuego += InicializarCartas;
+        EventManager.IniciaJuego += BarajarTablero;
     }
 
     void OnDisable()
     {
         EventManager.SeDescubreCarta -= CartaClickeada;
-        EventManager.IniciaJuego -= InicializarCartas;
+        EventManager.IniciaJuego -= BarajarTablero;
     }
 
 
     void InicializarCartas(string nivel)
     {
-        InicializarCartas(nivel, Globales.SabeLeer);
+        // InicializarCartas(nivel, Globales.SabeLeer);
+        BarajarTablero(nivel);
     }
+
+
+    void BarajarTablero(string nivel)
+    {
+        // Recupera la lista de imagenes
+        CargarSprites(nivel);
+        List<Sprite> sprites = new List<Sprite>(Sprites);
+
+        // Recuperar la lista de cartas en blanco
+        TodasLasCartas = new CardController[transform.childCount];
+        List<CardController> cartas = new List<CardController>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            cartas.Add(transform.GetChild(i).gameObject.GetComponent<CardController>());
+        }
+
+        // Baraja la lista de cartas
+        System.Random rnd = new System.Random();
+        cartas = cartas.OrderBy(x => rnd.Next()).ToList<CardController>(); 
+
+
+        // Asigna el sprite
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            CardController c = cartas[i];
+
+            // Si es par pone la imagen
+            if (i % 2 == 0)
+            {
+                c.SetearImagenAdelante(sprites.First());
+            }
+
+            // Si es impar evalua si pone el texto.
+            if (i % 2 > 0)
+            {
+                if (Globales.SabeLeer)
+                {
+                    c.SetearTextoAdelante(sprites.First().name);
+                } else
+                {
+                    c.SetearImagenAdelante(sprites.First());
+                }
+                sprites.RemoveAt(0);
+            }
+        }       
+
+
+    }
+
     void InicializarCartas(string nivel, bool habilitarTexto)
     {
 
@@ -46,7 +96,7 @@ public class CardGameManager : MonoBehaviour
         }
 
 
-        // randomizando
+        // Se barajan las cartas
         System.Random rnd = new System.Random();
         CardController[] TodasLasCartasRandom = TodasLasCartas.OrderBy(x => rnd.Next()).ToArray();
 
@@ -75,11 +125,12 @@ public class CardGameManager : MonoBehaviour
         Sprites = Resources.LoadAll<Sprite>("Sprites/" + nivel);
     }
 
-
+    //Compara si las cartas seleccionadas son iguales o distintas
     public void CartaClickeada(CardController Carta)
     {
         numClicks += 1;
         conteoClicksTotal += 1;
+        Debug.Log(conteoClicksTotal);
 
         Puntaje();
 
@@ -97,14 +148,17 @@ public class CardGameManager : MonoBehaviour
             }
 
             EventManager.OnParSeleccionado();
-
+            //Cartas iguales
             if (ParDeCartas[0].GetName() == ParDeCartas[1].GetName())
             {
                 ParDeCartas[0].destruirse();
                 ParDeCartas[1].destruirse();
 
+                EventManager.OnParIgual();
+
                 ComprobarSiGanamos();
             }
+            //Cartas distintas
             else
             {
                 ParDeCartas[0].Ocultar();
@@ -148,8 +202,8 @@ public class CardGameManager : MonoBehaviour
         int baseBueno = 4;
         int baseMalo = 6;
 
-        int pares = TodasLasCartas.Length / 2;
-        int factor = pares - 1;
+        int pares = TodasLasCartas.Length / 2;          
+        int factor = pares - 0;
 
         int MuyBuenoAjustado = baseMuyBueno * factor;
         int BuenoAjustado = baseBueno * factor;
@@ -161,24 +215,28 @@ public class CardGameManager : MonoBehaviour
 
         if (conteoClicksTotal == pares * 2)
         {
-            // perfecto
+            Debug.Log("Perfecto");
             resultado = 4;
         }
         else if (conteoClicksTotal <= MuyBuenoAjustado)
         {
+            Debug.Log("MuyBueno");
             resultado = 3;
         }
         else if (conteoClicksTotal <= BuenoAjustado)
         {
+            Debug.Log("Bueno");
             resultado = 2;
         }
         else if (conteoClicksTotal <= MaloAjustado)
         {
+            Debug.Log("Malo");
             resultado = 1;
         }
         else
         {
             resultado = 0;
+            Debug.Log("Desinstala el juego");
         }
 
         return resultado;
