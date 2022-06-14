@@ -20,25 +20,21 @@ public class opciones : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
-        Debug.Log(volume);
     }
 
     public void SetVolumemusica(float volume)
     {
         musicMixer.volume = volume;
-        Debug.Log("volumen de la musica" + volume);
     }
 
     void OnGUI()
     {
         new WaitForSeconds(3);
-       // Debug.Log(1 / Time.deltaTime);
     }
 
     void Update()
     { 
         Screen.brightness = brillo.value;
-        Debug.Log(Screen.brightness);
     }
 }
 

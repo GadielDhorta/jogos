@@ -47,17 +47,12 @@ public class MusicManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        if (GameObject.Find("MusicManager"))
-        {
-            Debug.Log("existe");
-        }
     }
 
     public void SetVolumemusica(float volume)   //Cambia el volumen de la Musica 
     {
 
         musicMixer = gameObject.GetComponent<AudioSource>();
-        Debug.Log("volumen de la musica" + volume);
     }
 
     private void Start()
