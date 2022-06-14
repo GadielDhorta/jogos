@@ -203,7 +203,7 @@ public class CardGameManager : MonoBehaviour
         int baseMalo = 6;
 
         int pares = TodasLasCartas.Length / 2;          
-        int factor = pares - 1;
+        int factor = pares - 0;
 
         int MuyBuenoAjustado = baseMuyBueno * factor;
         int BuenoAjustado = baseBueno * factor;
