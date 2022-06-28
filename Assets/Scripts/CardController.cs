@@ -121,8 +121,10 @@ public class CardController : MonoBehaviour
     private IEnumerator RotarDespuesDeTiempo()
     {
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 3 / 4);
+        yield return new WaitForSeconds(1.5f);
         Cruz.SetActive(true);
         Handheld.Vibrate();
+        yield return new WaitForSeconds(1.5f);
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas / 4);
 
         EventManager.OnCartaOcultada(this);
@@ -139,6 +141,7 @@ public class CardController : MonoBehaviour
 
     private IEnumerator DestruirDespuesDeTiempo()
     {
+        yield return new WaitForSeconds(4);
         Tilde.SetActive(true);
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas);
         Destroy(gameObject);

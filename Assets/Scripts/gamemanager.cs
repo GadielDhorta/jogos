@@ -16,7 +16,7 @@ public static class Globales
 {
     public static float TiempoDeMuestraDeCartasBase = 2f;
     public static float TiempoDeRotacionBase = 0.5f;
-    public static float TiempoDeMuestraDeCartas = 2f;
+    public static float TiempoDeMuestraDeCartas = 1.5f;
     public static float TiempoDeRotacion = 0.5f;
 
     public static bool SabeLeer = false;
