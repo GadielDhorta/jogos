@@ -19,7 +19,7 @@ public static class Globales
     public static float TiempoDeMuestraDeCartas = 1.5f;
     public static float TiempoDeRotacion = 0.5f;
 
-    public static bool SabeLeer = false;
+    public static bool SabeLeer = true;
 
     public static void aplicarCoeficiente(float coef)
     {
@@ -35,7 +35,7 @@ public class gamemanager : MonoBehaviour
 
 
     public static int puntaje = 0;
-    public static string nivelActual = "Geometria";
+    public static string nivelActual = "Arqueologia";
 
     public static nivelesDeLectura nivelDeLectura;
 
