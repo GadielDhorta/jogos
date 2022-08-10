@@ -122,7 +122,7 @@ public class CardController : MonoBehaviour
     {
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas * 3 / 4);
         Cruz.SetActive(true);
-        Handheld.Vibrate();
+        //Handheld.Vibrate();
         yield return new WaitForSeconds(Globales.TiempoDeMuestraDeCartas / 4);
 
         EventManager.OnCartaOcultada(this);
